@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "foworld:item/super_diamond_sword"
+  }
+}

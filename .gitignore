@@ -1,0 +1,75 @@
+###############
+### IDE ###
+###############
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VSCode
+.vscode/
+
+# Eclipse
+eclipse/
+.metadata/
+.settings/
+.classpath
+.project
+bin/
+*.launch
+
+###############
+### Gradle ###
+###############
+
+# Gradle cache & build output
+.gradle/
+build/
+out/
+logs/
+
+# Keep wrapper scripts, ignore wrapper files
+gradle/wrapper/
+!gradle/wrapper/gradle-wrapper.jar
+!gradlew
+!gradlew.bat
+
+###############
+### Minecraft / Forge ###
+###############
+
+# Forge MDK generated run environment
+run/
+
+# Forge downloaded libraries (超大，别上传)
+libraries/
+
+# Forge MDK附带的更新日志
+forge*changelog.txt
+
+# Temporary Minecraft files
+minecraft/
+
+###############
+### Java ###
+###############
+
+*.class
+*.log
+
+###############
+### System files ###
+###############
+
+.DS_Store
+Thumbs.db
+
+###############
+### Other ###
+###############
+
+# Any local mods / resourcepacks added for testing
+run/mods/
+run/resourcepacks/
+run/config/
+run/saves/
