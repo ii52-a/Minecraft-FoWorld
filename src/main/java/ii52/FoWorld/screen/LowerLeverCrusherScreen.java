@@ -1,8 +1,6 @@
 package ii52.FoWorld.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import ii52.FoWorld.menu.FoBenchMenu;
-import ii52.FoWorld.menu.LowerLeverCrusherMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -11,12 +9,12 @@ import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
 
 
-public class FoBenchScreen extends AbstractContainerScreen<FoBenchMenu> {
+public class LowerLeverCrusherScreen extends AbstractContainerScreen<ii52.FoWorld.menu.LowerLeverCrusherMenu> {
     // 确保图片真的在这个路径下
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation("foworld", "textures/gui/fo_bench.png");
+            new ResourceLocation("foworld", "textures/gui/lower_lever_crusher.png");
 
-    public FoBenchScreen(FoBenchMenu menu, Inventory inv, Component title) {
+    public LowerLeverCrusherScreen(ii52.FoWorld.menu.LowerLeverCrusherMenu menu, Inventory inv, Component title) {
         super(menu, inv, title);
         // 原版标准容器大小
         this.imageWidth = 176;
@@ -35,6 +33,10 @@ public class FoBenchScreen extends AbstractContainerScreen<FoBenchMenu> {
 
         // 参数含义：贴图资源，起始X，起始Y，贴图UV_X，贴图UV_Y，宽度，高度
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
+        int progressWidth = this.menu.getScaledProgress();
+
+        // 参数：贴图, 屏幕X, 屏幕Y, 贴图U, 贴图V, 绘制宽度, 绘制高度
+        guiGraphics.blit(TEXTURE, x + 68, y + 31, 176, 0, progressWidth, 17);
     }
 
     @Override

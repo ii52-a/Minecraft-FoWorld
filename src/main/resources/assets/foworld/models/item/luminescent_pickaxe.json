@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "foworld:item/tools/super_diamond_pickaxe"
+    "layer0": "foworld:item/tools/luminescent_pickaxe"
   }
 }

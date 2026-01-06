@@ -1,6 +1,6 @@
 {
-  "parent": "item/handheld",
+  "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "foworld:item/super_diamond_sword"
+    "layer0": "foworld:item/tools/super_diamond_sword"
   }
 }

@@ -1,0 +1,15 @@
+{
+  "type": "foworld:crushing",
+  "ingredient": {
+    "item": "minecraft:raw_iron"
+  },
+  "result": {
+    "item": "minecraft:iron_nugget",
+    "count": 9
+  },
+  "secondaries": [{
+    "item": "foworld:iron_dust",
+    "chance": 0.2
+  }
+  ]
+}

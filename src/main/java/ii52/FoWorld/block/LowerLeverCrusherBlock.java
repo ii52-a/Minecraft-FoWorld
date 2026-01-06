@@ -1,6 +1,8 @@
 package ii52.FoWorld.block;
 
-import ii52.FoWorld.blockentity.FoBenchBlockEntity;
+
+import ii52.FoWorld.blockentity.LowerLeverCrusherEntity;
+import ii52.FoWorld.registry.BlockEntityRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
@@ -12,6 +14,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -20,9 +24,9 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 // 建议使用 BaseEntityBlock，它比 Block 类多了一些处理实体块的默认工具
-public class FoBenchBlock extends BaseEntityBlock {
+public class LowerLeverCrusherBlock extends BaseEntityBlock {
 
-    public FoBenchBlock(Properties props) {
+    public LowerLeverCrusherBlock(Properties props) {
         super(props);
     }
 
@@ -38,7 +42,7 @@ public class FoBenchBlock extends BaseEntityBlock {
             BlockEntity be = level.getBlockEntity(pos);
 
             // 只有当 BlockEntity 实现了 MenuProvider 接口（提供 UI 标题和容器）时才能打开界面
-            if (be instanceof FoBenchBlockEntity entity) {
+            if (be instanceof LowerLeverCrusherEntity entity) {
                 // 向玩家发送数据包打开 UI 界面
                 NetworkHooks.openScreen((ServerPlayer) player, entity, pos);
             }
@@ -49,46 +53,46 @@ public class FoBenchBlock extends BaseEntityBlock {
     }
 
 
-    /**
-     * 【渲染模式】告诉游戏如何渲染这个方块。
-     * BaseEntityBlock 默认返回 INVISIBLE（不可见），所以必须重写！
-     * 返回 MODEL 表示使用我们之前在 JSON 里定义的模型渲染。
-     */
+
     @Override
     public RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
 
-    /**
-     * 【创建实体】当方块被放置在世界上时，调用此方法产生 BlockEntity。
-     */
+
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new FoBenchBlockEntity(pos, state);
+        return new LowerLeverCrusherEntity(pos, state);
     }
 
-    /**
-     * 【清理逻辑】当方块被破坏时调用。
-     * 如果你的工作台里存了物品，你需要在此时把物品喷出来，否则物品会消失。
-     */
+
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!state.is(newState.getBlock())) { // 只有当方块真的被替换（破坏），而不是状态改变时才执行
             BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof FoBenchBlockEntity benchBE) {
+            if (be instanceof LowerLeverCrusherEntity benchBE) {
                 // 获取方块实体里的物品处理器
-                be.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-                    // 遍历 0-9 号格子（输入+输出）
-                    dropInventoryItems(level,pos,handler);
-                });
+                if (be instanceof LowerLeverCrusherEntity crusherBE) {
+                    // 不要用 be.getCapability，直接调用 BE 里的方法或直接访问 handler
+                    // 建议在 LowerLeverCrusherEntity 里写一个公共方法 getInventory() 返回 itemHandler
+                    dropInventoryItems(level, pos, crusherBE.getItemHandler());
+
+                    level.updateNeighbourForOutputSignal(pos, this);
+                }
                 // 通知系统：这个坐标的比较器（如果有）需要更新红石信号
                 level.updateNeighbourForOutputSignal(pos, this);
             }
             super.onRemove(state, level, pos, newState, isMoving);
         }
     }
-
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        // 只有在服务端运行逻辑才有意义
+        return level.isClientSide ? null : createTickerHelper(type, BlockEntityRegistry.LOWER_LEVER_CRUSHER.get(),
+                LowerLeverCrusherEntity::tick);
+    }
     private void dropInventoryItems(Level level, BlockPos pos, IItemHandler handler) {
         for (int i = 0; i < handler.getSlots(); i++) {
             ItemStack stack = handler.getStackInSlot(i);

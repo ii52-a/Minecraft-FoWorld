@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up":    "foworld:block/lower_lever_crusher/top",
+    "down":  "foworld:block/lower_lever_crusher/down",
+    "north": "foworld:block/lower_lever_crusher/side",
+    "south": "foworld:block/lower_lever_crusher/side",
+    "east":  "foworld:block/lower_lever_crusher/side",
+    "west":  "foworld:block/lower_lever_crusher/side",
+    "particle": "foworld:block/lower_lever_crusher/side"
+  }
+}

@@ -1,6 +1,7 @@
 package ii52.FoWorld.registry;
 
 import ii52.FoWorld.blockentity.FoBenchBlockEntity;
+import ii52.FoWorld.blockentity.LowerLeverCrusherEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.*;
@@ -27,6 +28,12 @@ public class BlockEntityRegistry {
                     BlockEntityType.Builder.of(FoBenchBlockEntity::new, BlockRegistry.FO_BENCH.get())
                             .build(null) // build(null) 表示目前没有复杂的数据迁移逻辑（DataFixer）
             );
+    public static final RegistryObject<BlockEntityType<LowerLeverCrusherEntity>> LOWER_LEVER_CRUSHER =
+            BLOCK_ENTITIES.register("lower_lever_crusher", () ->
+                    BlockEntityType.Builder.of(LowerLeverCrusherEntity::new, BlockRegistry.LOWER_LEVER_CRUSHER.get())
+                            .build(null) // build(null) 表示目前没有复杂的数据迁移逻辑（DataFixer）
+            );
+
 
     /**
      * 这个方法会在你的主类（FoWorld.java）里被调用。

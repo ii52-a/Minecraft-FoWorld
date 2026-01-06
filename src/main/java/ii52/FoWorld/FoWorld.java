@@ -3,6 +3,7 @@ package ii52.FoWorld;
 import com.mojang.logging.LogUtils;
 import ii52.FoWorld.registry.*;
 import ii52.FoWorld.screen.FoBenchScreen;
+import ii52.FoWorld.screen.LowerLeverCrusherScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -90,6 +91,10 @@ public class FoWorld
             event.enqueueWork(() -> {
                 MenuScreens.register(MenuRegistry.FO_BENCH_MENU.get(), FoBenchScreen::new);
             });
+            event.enqueueWork(() -> {
+                MenuScreens.register(MenuRegistry.LOWER_LEVER_CRUSHER.get(), LowerLeverCrusherScreen::new);
+            });
+
         }
     }
 }

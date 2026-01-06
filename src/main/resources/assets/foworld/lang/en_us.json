@@ -1,5 +1,7 @@
 {
-  "item.foworld.super_diamond_sword": "super_diamond_sword",
-  "item.foworld.super_diamond_pickaxe": "super_diamond_pickaxe",
-  "block.foworld.fo_bench": "FoWorld_crafting_table"
+  "item.foworld.super_diamond_sword": "Composite_diamond_sword",
+  "item.foworld.super_diamond_pickaxe": "Composite_diamond_pickaxe",
+  "block.foworld.fo_bench": "FoWorld_crafting_table",
+  "block.foworld.lower_lever_crusher": "stone_crusher",
+  "item.foworld.iron_dust": "iron_dust"
 }

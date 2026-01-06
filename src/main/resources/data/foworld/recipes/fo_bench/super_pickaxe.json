@@ -1,14 +1,13 @@
 {
   "type": "foworld:fo_bench_shaped",
   "pattern":[
-    "SSS",
-    " DA",
-    " D "
+    " D ",
+    " A ",
+    "   "
   ],
   "key": {
-    "S": {"item": "minecraft:diamond"},
-    "D": {"item": "minecraft:iron_ingot"},
-    "A": {"item": "minecraft:apple"}
+    "D": {"item": "minecraft:diamond"},
+    "A": {"item": "minecraft:diamond_pickaxe"}
   },
   "result": {
     "item": "foworld:super_diamond_pickaxe",

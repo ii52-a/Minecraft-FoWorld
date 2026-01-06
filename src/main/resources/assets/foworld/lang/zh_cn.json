@@ -1,5 +1,7 @@
 {
-  "item.foworld.super_diamond_sword": "超级钻石剑",
-  "item.foworld.super_diamond_pickaxe": "超级钻石镐",
-  "block.foworld.fo_bench": "世界工作台"
+  "item.foworld.super_diamond_sword": "复合钻石剑",
+  "item.foworld.super_diamond_pickaxe": "复合钻石镐",
+  "block.foworld.fo_bench": "世界工作台",
+  "block.foworld.lower_lever_crusher": "石制粉碎机",
+  "item.foworld.iron_dust": "铁粉尘"
 }

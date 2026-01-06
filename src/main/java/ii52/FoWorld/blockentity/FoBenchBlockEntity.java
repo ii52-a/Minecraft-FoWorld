@@ -1,14 +1,13 @@
 package ii52.FoWorld.blockentity;
 
+
 import ii52.FoWorld.menu.FoBenchMenu;
 import ii52.FoWorld.registry.BlockEntityRegistry;
-import ii52.FoWorld.registry.ItemRegistry;
 import ii52.FoWorld.registry.RecipeRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -16,7 +15,6 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.TransientCraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -46,32 +44,50 @@ public class FoBenchBlockEntity extends BlockEntity implements MenuProvider {
         }
     };
     // --- 1.5 处理结果
-    private void updateChanged(){
+    // --- 1.5 核心合成处理逻辑 ---
+    private void updateChanged() {
+        // 只有在服务端才进行合成逻辑计算（客户端只负责显示，不负责逻辑校验）
         if (this.level == null || this.level.isClientSide) return;
+
+        // 创建一个临时的合成容器，模拟原版工作台的九宫格
+        // 这个容器是虚拟的，它的唯一作用是作为参数传给配方系统进行“匹配检测”
         TransientCraftingContainer craftInv = new TransientCraftingContainer(new AbstractContainerMenu(null, -1) {
             @Override
             public ItemStack quickMoveStack(Player player, int index) { return ItemStack.EMPTY; }
             @Override
             public boolean stillValid(Player player) { return true; }
         }, 3, 3);
+
+        // 将我们 itemHandler 里的 0-8 号格子的物品“投影”到虚拟容器中
         for (int i = 0; i < 9; i++) {
-            craftInv.setItem(i,itemHandler.getStackInSlot(i));
-        }
-        Optional<? extends CraftingRecipe> recipe =this.level.getRecipeManager()
-                .getRecipeFor(RecipeRegistry.FO_BENCH_TYPE.get(),craftInv,this.level);
-        ItemStack currentOutput=itemHandler.getStackInSlot(9);
-        if (recipe.isPresent()){
-            ItemStack resultStack =recipe.get().assemble(craftInv,this.level.registryAccess());
-
-            if (!ItemStack.matches(currentOutput,resultStack)){
-                itemHandler.setStackInSlot(9,resultStack);
-            }
-        }else{
-            if (!currentOutput.isEmpty()){
-                itemHandler.setStackInSlot(9,ItemStack.EMPTY);
-            }
+            craftInv.setItem(i, itemHandler.getStackInSlot(i));
         }
 
+        // 【核心步骤】向配方管理器询问：
+        // “在我的 FO_BENCH_TYPE 分类下，有没有哪个配方能匹配这 9 个格子？”
+        // 这里拿到的 recipe 对象，本质上就是你写的 FoBenchShapedRecipe 实例
+        Optional<? extends CraftingRecipe> recipe = this.level.getRecipeManager()
+                .getRecipeFor(RecipeRegistry.FO_BENCH_TYPE.get(), craftInv, this.level);
+
+        // 获取当前输出槽（第 10 格，索引为 9）的内容
+        ItemStack currentOutput = itemHandler.getStackInSlot(9);
+
+        if (recipe.isPresent()) {
+            // 【多态调用】本质上是调用了 FoBenchShapedRecipe 类里你写的 assemble 方法
+            // 它会通过内部的 internal(原版ShapedRecipe) 计算出结果 ItemStack
+            ItemStack resultStack = recipe.get().assemble(craftInv, this.level.registryAccess());
+
+            // 为了防止逻辑死循环（setStackInSlot 会再次触发 onContentsChanged），
+            // 只有当计算出的产物与当前输出槽的东西不一致时，才更新输出槽
+            if (!ItemStack.matches(currentOutput, resultStack)) {
+                itemHandler.setStackInSlot(9, resultStack);
+            }
+        } else {
+            // 如果没有任何配方匹配，且输出槽不是空的，就清空输出槽
+            if (!currentOutput.isEmpty()) {
+                itemHandler.setStackInSlot(9, ItemStack.EMPTY);
+            }
+        }
     }
 
     // --- 2. 对外窗口 (The Capability) ---
