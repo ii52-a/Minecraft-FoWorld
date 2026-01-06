@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up":    "foworld:block/fo_bench/fo_bench_top",
+    "down":  "foworld:block/fo_bench/fo_bench_side",
+    "north": "foworld:block/fo_bench/fo_bench_front",
+    "south": "foworld:block/fo_bench/fo_bench_front",
+    "east":  "foworld:block/fo_bench/fo_bench_side",
+    "west":  "foworld:block/fo_bench/fo_bench_side",
+    "particle": "foworld:block/fo_bench/fo_bench_side"
+  }
+}

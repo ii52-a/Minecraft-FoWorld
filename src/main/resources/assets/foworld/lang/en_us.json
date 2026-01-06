@@ -1,4 +1,5 @@
 {
   "item.foworld.super_diamond_sword": "super_diamond_sword",
-  "item.foworld.super_diamond_pickaxe": "super_diamond_pickaxe"
+  "item.foworld.super_diamond_pickaxe": "super_diamond_pickaxe",
+  "block.foworld.fo_bench": "FoWorld_crafting_table"
 }

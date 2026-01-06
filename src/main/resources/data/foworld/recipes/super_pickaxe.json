@@ -1,0 +1,17 @@
+{
+  "type": "foworld:fo_bench_shaped",
+  "pattern":[
+    "SSS",
+    " DA",
+    " D "
+  ],
+  "key": {
+    "S": {"item": "minecraft:diamond"},
+    "D": {"item": "minecraft:iron_ingot"},
+    "A": {"item": "minecraft:apple"}
+  },
+  "result": {
+    "item": "foworld:super_diamond_pickaxe",
+    "count": 1
+  }
+}
