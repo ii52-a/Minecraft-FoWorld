@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "foworld:item/tools/glow_diamond_pickaxe_active"
+  }
+}

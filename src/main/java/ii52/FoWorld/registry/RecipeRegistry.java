@@ -1,7 +1,7 @@
 package ii52.FoWorld.registry;
 import ii52.FoWorld.recipe.CrushingRecipe;
 import ii52.FoWorld.recipe.FoBenchShapedRecipe;
-import net.minecraft.core.registries.Registries;
+import ii52.FoWorld.recipe.FoBenchShapelessRecipe;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -26,6 +26,8 @@ public class RecipeRegistry{
     public static final RegistryObject<RecipeSerializer<CrushingRecipe>> CRUSHING_SERIALIZER =
             SERIALIZERS.register("crushing", CurshingSerializer::new);
 
+    public static final RegistryObject<RecipeSerializer<?>> FO_BENCH_SHAPELESS_SERIALIZER =
+            SERIALIZERS.register("fo_bench_shapeless", FoBenchShapelessRecipe.Serializer::new);
     public static final RegistryObject<RecipeType<CrushingRecipe>> CRUSHING_TYPE =
             TYPES.register("crushing", () -> new RecipeType<>() {
                 @Override

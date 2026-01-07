@@ -101,6 +101,8 @@ public class FoBenchShapedRecipe implements CraftingRecipe {
         return CraftingBookCategory.MISC;
     }
 
+
+
     // --- 3. 翻译官（序列化器） ---
 
     public static class Serializer implements RecipeSerializer<FoBenchShapedRecipe> {

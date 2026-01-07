@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:shapeless",
+  "ingredients": [
+    { "item": "minecraft:glowstone_dust"},
+    { "item": "minecraft:glowstone_dust"},
+    { "item": "minecraft:gunpowder" },
+    { "item": "foworld:iron_dust"}
+  ],
+  "result": { "item": "foworld:luminescent_dust", "count": 2 }
+}

@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "foworld:item/tools/glow_diamond_pickaxe"
+  },
+  "overrides": [
+  {
+    "predicate": {
+      "foworld:glowing": 1.0
+    },
+    "model": "foworld:item/glow_diamond_pickaxe_active"
+  }
+]
+}

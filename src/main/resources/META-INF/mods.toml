@@ -4,11 +4,12 @@ license="MIT"
 
 [[mods]]
 modId="foworld"
-version="1.0.1"
+version="1.0.2"
 displayName="FoWorld"
 authors="ii52"
 description='''
 ii52 Universe: Foworld
+new item:Fluorescent_sword
 '''
 
 [[dependencies.foworld]]

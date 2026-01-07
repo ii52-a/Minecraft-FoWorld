@@ -1,0 +1,16 @@
+{
+  "type": "foworld:fo_bench_shaped",
+  "pattern":[
+    " D ",
+    " A ",
+    "   "
+  ],
+  "key": {
+    "D": {"item": "minecraft:diamond"},
+    "A": {"item": "minecraft:diamond_sword"}
+  },
+  "result": {
+    "item": "foworld:super_diamond_sword",
+    "count": 1
+  }
+}

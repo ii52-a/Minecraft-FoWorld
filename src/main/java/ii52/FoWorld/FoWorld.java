@@ -16,7 +16,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-
 /**
  * Mod 主类。@Mod 注解必须匹配 mods.toml 中的 modId。
  */
@@ -51,6 +50,9 @@ public class FoWorld
 
         // MinecraftForge.EVENT_BUS 是全局总线，用于监听游戏内的事件（如玩家进服、方块破坏等）
         MinecraftForge.EVENT_BUS.register(this);
+
+        //创造栏
+        CreativeTabRegistry.TABS.register(modEventBus);
 
 
         // 注册配置文件（Config）
@@ -95,6 +97,8 @@ public class FoWorld
                 MenuScreens.register(MenuRegistry.LOWER_LEVER_CRUSHER.get(), LowerLeverCrusherScreen::new);
             });
 
+
+        }
+
         }
     }
-}
