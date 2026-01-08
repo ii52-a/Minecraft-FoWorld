@@ -1,6 +1,6 @@
 package ii52.FoWorld.menu;
 
-import ii52.FoWorld.registry.BlockRegistry;
+import ii52.FoWorld.registry.BlockRegistry.BlockRegistry;
 import ii52.FoWorld.registry.MenuRegistry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;

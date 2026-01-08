@@ -5,5 +5,8 @@
   "item.foworld.luminescent_dust": "luminescent_dust",
   "block.foworld.fo_bench": "FoWorld_crafting_table",
   "block.foworld.lower_lever_crusher": "stone_crusher",
-  "item.foworld.iron_dust": "iron_dust"
+  "item.foworld.iron_dust": "iron_dust",
+  "item.foworld.wooden_heavy_hammer": "wooden_heavy_hammer",
+  "item.foworld.stone_heavy_hammer": "stone_heavy_hammer",
+  "item.foworld.iron_heavy_hammer": "iron_heavy_hammer"
 }

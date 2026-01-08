@@ -2,7 +2,7 @@ package ii52.FoWorld.block;
 
 
 import ii52.FoWorld.blockentity.LowerLeverCrusherEntity;
-import ii52.FoWorld.registry.BlockEntityRegistry;
+import ii52.FoWorld.registry.BlockRegistry.BlockEntityRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
@@ -18,7 +18,6 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
@@ -71,7 +70,6 @@ public class LowerLeverCrusherBlock extends BaseEntityBlock {
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!state.is(newState.getBlock())) { // 只有当方块真的被替换（破坏），而不是状态改变时才执行
             BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof LowerLeverCrusherEntity benchBE) {
                 // 获取方块实体里的物品处理器
                 if (be instanceof LowerLeverCrusherEntity crusherBE) {
                     // 不要用 be.getCapability，直接调用 BE 里的方法或直接访问 handler
@@ -85,7 +83,6 @@ public class LowerLeverCrusherBlock extends BaseEntityBlock {
             }
             super.onRemove(state, level, pos, newState, isMoving);
         }
-    }
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {

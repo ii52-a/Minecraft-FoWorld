@@ -1,0 +1,18 @@
+{
+  "type": "foworld:fo_bench_shaped",
+  "category": "equipment",
+  "key": {
+    "W": { "tag": "minecraft:planks" },
+    "L": { "tag": "minecraft:logs" },
+    "T": { "item": "minecraft:stick" }
+  },
+  "pattern": [
+    "WWW",
+    "WLW",
+    " T "
+  ],
+  "result": {
+    "count": 1,
+    "item": "foworld:wooden_heavy_hammer"
+  }
+}

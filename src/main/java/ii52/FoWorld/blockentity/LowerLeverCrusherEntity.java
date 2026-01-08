@@ -2,7 +2,7 @@ package ii52.FoWorld.blockentity;
 
 import ii52.FoWorld.menu.LowerLeverCrusherMenu;
 import ii52.FoWorld.recipe.CrushingRecipe;
-import ii52.FoWorld.registry.BlockEntityRegistry;
+import ii52.FoWorld.registry.BlockRegistry.BlockEntityRegistry;
 import ii52.FoWorld.registry.RecipeRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

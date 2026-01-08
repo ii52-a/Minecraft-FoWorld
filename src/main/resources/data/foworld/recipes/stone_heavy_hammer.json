@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "W": { "tag": "minecraft:stone_tool_materials" },
+    "L": { "tag": "minecraft:logs" },
+    "T": { "item": "minecraft:stick" }
+  },
+  "pattern": [
+    "WWW",
+    "WLW",
+    " T "
+  ],
+  "result": {
+    "count": 1,
+    "item": "foworld:stone_heavy_hammer"
+  }
+}

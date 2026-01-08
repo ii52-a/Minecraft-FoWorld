@@ -1,5 +1,6 @@
 package ii52.FoWorld.menu;
 
+import ii52.FoWorld.registry.BlockRegistry.BlockRegistry;
 import ii52.FoWorld.registry.MenuRegistry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -130,7 +131,7 @@ public class FoBenchMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         // 安全距离检查：如果玩家跑太远，自动关闭 UI
-        return stillValid(access, player, ii52.FoWorld.registry.BlockRegistry.FO_BENCH.get());
+        return stillValid(access, player, BlockRegistry.FO_BENCH.get());
     }
 
     private void layoutPlayerInventory(Inventory playerInv, int x, int y) {

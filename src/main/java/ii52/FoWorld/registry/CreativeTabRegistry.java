@@ -1,12 +1,13 @@
 package ii52.FoWorld.registry;
 
 import ii52.FoWorld.FoWorld;
+import ii52.FoWorld.registry.BlockRegistry.BlockRegistry;
+import ii52.FoWorld.registry.FlowerRegistry.FlowerRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class CreativeTabRegistry {
@@ -25,6 +26,8 @@ public class CreativeTabRegistry {
                                 output.accept(ItemRegistry.GLOW_DIAMOND_PICKAXE.get());
                                 output.accept(ItemRegistry.SUPER_DIAMOND_PICKAXE.get());
                                 output.accept(ItemRegistry.SUPER_DIAMOND_SWORD.get());
+                                output.accept(ItemRegistry.WOODEN_HEAVY_HAMMER.get());
+                                output.accept(ItemRegistry.STONE_HEAVY_HAMMER.get());
 
                                 //机械
                                 output.accept(BlockRegistry.FO_BENCH.get());
@@ -33,6 +36,9 @@ public class CreativeTabRegistry {
                                 //材料
                                 output.accept(ItemRegistry.IRON_DUST.get());
                                 output.accept(ItemRegistry.LUMINESCENT_DUST.get());
+
+                                //花
+                                output.accept(FlowerRegistry.LUMINEX_FLOWER.get());
 
 
 

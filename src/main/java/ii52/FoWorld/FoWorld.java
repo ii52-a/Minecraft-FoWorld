@@ -2,6 +2,10 @@ package ii52.FoWorld;
 
 import com.mojang.logging.LogUtils;
 import ii52.FoWorld.registry.*;
+import ii52.FoWorld.registry.BlockRegistry.BlockEntityRegistry;
+import ii52.FoWorld.registry.BlockRegistry.BlockRegistry;
+import ii52.FoWorld.registry.FlowerRegistry.FlowerEntityRegistry;
+import ii52.FoWorld.registry.FlowerRegistry.FlowerRegistry;
 import ii52.FoWorld.screen.FoBenchScreen;
 import ii52.FoWorld.screen.LowerLeverCrusherScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -41,8 +45,12 @@ public class FoWorld
         BlockEntityRegistry.register(modEventBus); // 注册方块实体
         MenuRegistry.register(modEventBus);        // 注册 GUI 菜单逻辑
 
-        RecipeRegistry.TYPES.register(modEventBus);
-        RecipeRegistry.SERIALIZERS.register(modEventBus);
+        FlowerEntityRegistry.register(modEventBus);
+        FlowerRegistry.register(modEventBus);
+
+        RecipeRegistry.TYPES.register(modEventBus);            //注册类型
+        RecipeRegistry.SERIALIZERS.register(modEventBus);      //注册json序列化
+
 
         // 注册一些生命周期监听（比如通用启动、加入物品栏等）
         modEventBus.addListener(this::commonSetup);

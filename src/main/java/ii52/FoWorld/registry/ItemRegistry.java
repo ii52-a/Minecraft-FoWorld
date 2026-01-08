@@ -1,6 +1,7 @@
 package ii52.FoWorld.registry;
 
 import ii52.FoWorld.item.GlowDiamondPickaxeItem;
+import ii52.FoWorld.tier.FoTier;
 import net.minecraft.world.item.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -34,13 +35,17 @@ public class ItemRegistry{
             );
 
     //辉光钻石镐
-    public static final RegistryObject<PickaxeItem> GLOW_DIAMOND_PICKAXE=
-            ITEMS.register("glow_diamond_pickaxe",() ->
-                    new GlowDiamondPickaxeItem(new Item.Properties())
+    public static final RegistryObject<PickaxeItem> GLOW_DIAMOND_PICKAXE=GlowDiamondPickaxeItem.registry(ITEMS);
+    //  ---重锤系列---
+    // 木制重锤
+    public static final RegistryObject<PickaxeItem>WOODEN_HEAVY_HAMMER=
+            ITEMS.register("wooden_heavy_hammer",()->
+                    new PickaxeItem(Tiers.WOOD,7,-3.4f,new Item.Properties().durability(102))
             );
-    public static final RegistryObject<PickaxeItem> GLOW_DIAMOND_PICKAXE_ACTIVE=
-            ITEMS.register("glow_diamond_pickaxe_active",() ->
-                    new PickaxeItem(Tiers.DIAMOND,2,-2.7f,new Item.Properties())
+    // 石制重锤
+    public static final RegistryObject<PickaxeItem>STONE_HEAVY_HAMMER=
+            ITEMS.register("stone_heavy_hammer",()->
+                    new PickaxeItem(Tiers.STONE,7,-3.4f,new Item.Properties().durability(355))
             );
 
     public static void register(IEventBus bus){

@@ -1,4 +1,4 @@
-package ii52.FoWorld.registry;
+package ii52.FoWorld.registry.BlockRegistry;
 
 import ii52.FoWorld.blockentity.FoBenchBlockEntity;
 import ii52.FoWorld.blockentity.LowerLeverCrusherEntity;

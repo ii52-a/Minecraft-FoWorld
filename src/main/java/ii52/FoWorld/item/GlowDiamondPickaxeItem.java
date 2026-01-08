@@ -11,15 +11,21 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
 
 public class GlowDiamondPickaxeItem extends PickaxeItem {
     private static final String TAG_GLOW = "glowing";
+    private static final String TAG_NEXT_USE = "NextUseTick";
+
+
     // 构造函数：定义这把镐子的基础属性
     public GlowDiamondPickaxeItem(Properties properties) {
         super(
@@ -34,10 +40,18 @@ public class GlowDiamondPickaxeItem extends PickaxeItem {
         ItemStack stack = player.getItemInHand(hand);
 
         if (!level.isClientSide) {
+            long now = level.getGameTime();
+            long nextUse = stack.getOrCreateTag().getLong(TAG_NEXT_USE);
+
+            if (now < nextUse) {
+                return InteractionResultHolder.fail(stack);
+            }
+
             boolean enabled = stack.getOrCreateTag().getBoolean(TAG_GLOW);
             stack.getOrCreateTag().putBoolean(TAG_GLOW, !enabled);
 
-            player.getCooldowns().addCooldown(this, 20);
+            // 设置 20 tick 冷却
+            stack.getOrCreateTag().putLong(TAG_NEXT_USE, now + 10);
         }
 
         return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
@@ -115,5 +129,9 @@ public class GlowDiamondPickaxeItem extends PickaxeItem {
 
         return state.is(ModTags.Blocks.GLOW_CHECK);
     }
-
+    public static RegistryObject<PickaxeItem> registry(DeferredRegister<Item> items){
+        return items.register("glow_diamond_pickaxe",() ->
+                new GlowDiamondPickaxeItem(new Item.Properties())
+        );
+    }
 }
