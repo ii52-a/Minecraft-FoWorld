@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": { "item": "minecraft:crafting_table" },
+    "H": { "item": "minecraft:chest" },
+    "D": { "item": "minecraft:diamond" },
+    "Y": { "item": "foworld:luminescent_dust"}
+  },
+  "pattern": [
+    " Y ",
+    "DHD",
+    " C "
+  ],
+  "result": {
+    "count": 1,
+    "item": "foworld:fo_bench"
+  }
+}

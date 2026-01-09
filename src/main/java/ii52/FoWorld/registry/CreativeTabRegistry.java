@@ -40,6 +40,12 @@ public class CreativeTabRegistry {
                                 //花
                                 output.accept(FlowerRegistry.LUMINEX_FLOWER.get());
 
+                                //方块
+                                output.accept(BlockRegistry.FLUORITE_ORE_0.get());
+                                output.accept(BlockRegistry.FLUORITE_ORE_1.get());
+                                output.accept(BlockRegistry.FLUORITE_ORE.get());
+                                output.accept(BlockRegistry.DEEP_GLOW_STONE.get());
+
 
 
 

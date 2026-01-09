@@ -9,5 +9,8 @@
   "block.foworld.lower_lever_crusher": "石制粉碎机",
   "block.foworld.luminex_flower": "荧光花",
   "item.foworld.iron_dust": "铁粉尘",
-  "item.foworld.luminescent_dust": "荧光粉尘"
+  "item.foworld.luminescent_dust": "荧光粉尘",
+  "block.foworld.fluorite_ore": "荧光石",
+  "block.foworld.deep_glow_stone": "暗光萤石"
+
 }

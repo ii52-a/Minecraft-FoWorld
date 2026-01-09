@@ -6,7 +6,6 @@ import ii52.FoWorld.registry.ItemRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffects;
@@ -54,18 +53,23 @@ public class LuminexFlower extends FlowerBlock implements EntityBlock {
                 BlockEntity be = level.getBlockEntity(pos);
 
                 if (be instanceof LuminexFlowerEntity flowerEntity) {
-                    // 1. 消耗粉尘：如果不是创造模式，则扣除一个
-                    if (!player.getAbilities().instabuild) {
-                        itemstack.shrink(1);
+                    if (flowerEntity.getGlow() <flowerEntity.getMaxGlow()*0.9){
+                        if (!player.getAbilities().instabuild) {
+                            itemstack.shrink(1);
+                        }
+
+                        // 2. 增加能量：调用 BlockEntity 里的方法增加 glow 值
+                        flowerEntity.addGlow(10);
+
+                        // 3. 反馈：在方块位置播放一个清脆的声音（紫水晶簇音效）
+                        level.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 1.0F, 1.0F);
+
+                        return InteractionResult.SUCCESS; // 告诉游戏：交互成功，别再做别的了
                     }
-
-                    // 2. 增加能量：调用 BlockEntity 里的方法增加 glow 值
-                    flowerEntity.addGlow(10);
-
-                    // 3. 反馈：在方块位置播放一个清脆的声音（紫水晶簇音效）
-                    level.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 1.0F, 1.0F);
-
-                    return InteractionResult.SUCCESS; // 告诉游戏：交互成功，别再做别的了
+                    // 1. 消耗粉尘：如果不是创造模式，则扣除一个
+                    else{
+                        return InteractionResult.FAIL;
+                    }
                 }
             }
         }
@@ -92,30 +96,6 @@ public class LuminexFlower extends FlowerBlock implements EntityBlock {
         return new LuminexFlowerEntity(pos, state);
     }
 
-    /**
-     * 【拆除逻辑】
-     * 当花被破坏（玩家挖掉、水流冲掉等）时触发。
-     */
-    @Override
-    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
-        // 确保是方块本身被替换了（比如变空气了），而不是仅仅状态改变（比如亮度变了）
-        if (!state.is(newState.getBlock())) {
-            BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof LuminexFlowerEntity luminexFlower) {
-                // 计算剩余能量可以折合成多少粉尘
-                int glow = luminexFlower.getGlow();
-                int count = glow / 10;
-
-                // 如果有多余的能量，把它们吐出来还给玩家
-                if (count > 0) {
-                    Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(),
-                            new ItemStack(ItemRegistry.LUMINESCENT_DUST.get(), count));
-                }
-            }
-            // 【极其重要】必须调用父类的 onRemove，否则旧的大脑数据会残留在内存里
-            super.onRemove(state, level, pos, newState, isMoving);
-        }
-    }
 
     /**
      * 【心跳绑定】
@@ -126,6 +106,7 @@ public class LuminexFlower extends FlowerBlock implements EntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         // 检查传入的类型是否是我们注册的那种大脑
+         System.out.println("Ticker 请求类型: " + (type ==FlowerEntityRegistry.LUMINEX_FLOWER_BE.get()));
         if (type == FlowerEntityRegistry.LUMINEX_FLOWER_BE.get()) {
             // 返回一个 lambda 表达式：告诉系统每过 1 刻，就去执行我们 Entity 类里的 tick 静态方法
             return (lvl, p, st, be) -> {

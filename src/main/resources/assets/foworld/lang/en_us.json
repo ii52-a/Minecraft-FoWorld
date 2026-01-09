@@ -9,5 +9,9 @@
   "item.foworld.iron_heavy_hammer": "iron_heavy_hammer",
   "block.foworld.fo_bench": "FoWorld_crafting_table",
   "block.foworld.lower_lever_crusher": "stone_crusher",
-  "block.foworld.luminex_flower": "luminex_flower"
+  "block.foworld.luminex_flower": "luminex_flower",
+  "block.foworld.fluorite_ore": "fluorite_ore",
+  "block.foworld.fluorite_ore_0": "fluorite_ore_mid0",
+  "block.foworld.fluorite_ore_1": "fluorite_ore_mid1",
+  "block.foworld.deep_glow_stone": "deep_glow_stone"
 }

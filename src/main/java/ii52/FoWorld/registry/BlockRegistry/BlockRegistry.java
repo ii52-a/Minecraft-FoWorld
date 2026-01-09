@@ -7,6 +7,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -39,6 +40,37 @@ public class BlockRegistry {
             )
     );
 
+    public static final RegistryObject<Block> FLUORITE_ORE = BLOCKS.register(
+            "fluorite_ore", // 注册名
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)
+                      .strength(1.5f, 3.0f)
+//                    .requiresCorrectToolForDrops() // 设置必须用稿子挖才能掉落
+            )
+    );
+    public static final RegistryObject<Block> FLUORITE_ORE_0 = BLOCKS.register(
+            "fluorite_ore_0", // 注册名
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)
+                    .strength(1.5f, 3.0f)
+//                    .requiresCorrectToolForDrops() // 设置必须用稿子挖才能掉落
+            )
+    );
+    public static final RegistryObject<Block> FLUORITE_ORE_1 = BLOCKS.register(
+            "fluorite_ore_1", // 注册名
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)
+                    .strength(1.5f, 3.0f)
+//                    .requiresCorrectToolForDrops() // 设置必须用稿子挖才能掉落
+            )
+    );
+    public static final RegistryObject<Block> DEEP_GLOW_STONE = BLOCKS.register(
+            "deep_glow_stone", // 注册名
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.GLOWSTONE)
+                    .strength(0.3f, 2.0f)
+                    .lightLevel(state -> 8)   // 自带微光，很有氛围感
+                    .sound(SoundType.GLASS)
+//                    .requiresCorrectToolForDrops() // 设置必须用稿子挖才能掉落
+            )
+    );
+
 
     /**
      * 每一个方块通常都需要一个对应的物品（BlockItem），这样玩家才能在背包里拿着它。
@@ -51,6 +83,26 @@ public class BlockRegistry {
             "lower_lever_crusher",
             () -> new BlockItem(LOWER_LEVER_CRUSHER.get(), new Item.Properties())
     );
+    //荧光石
+    public static final RegistryObject<Item> FLUORITE_ORE_ITEM = ITEMS.register(
+            "fluorite_ore",
+            () -> new BlockItem(FLUORITE_ORE.get(), new Item.Properties())
+    );
+    public static final RegistryObject<Item> FLUORITE_ORE_0_ITEM = ITEMS.register(
+            "fluorite_ore_0",
+            () -> new BlockItem(FLUORITE_ORE_0.get(), new Item.Properties())
+    );
+    public static final RegistryObject<Item> FLUORITE_ORE_1_ITEM = ITEMS.register(
+            "fluorite_ore_1",
+            () -> new BlockItem(FLUORITE_ORE_1.get(), new Item.Properties())
+    );
+    //暗光萤石
+    public static final RegistryObject<Item> DEEP_GLOW_STONE_ITEM = ITEMS.register(
+            "deep_glow_stone",
+            () -> new BlockItem(DEEP_GLOW_STONE.get(), new Item.Properties())
+    );
+
+
 
     /**
      * 这个方法由主类（FoWorld.java）调用，负责把上面的“名单”提交给 Forge。
