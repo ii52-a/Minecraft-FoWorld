@@ -9,10 +9,13 @@ import net.minecraft.world.level.block.Block;
 public class ModTags {
     public static class Blocks {
         public static final TagKey<Block> GLOW_CHECK =tag("glow_check");
+        public static final TagKey<Block> LUMINEX_FLOWER_STONE =tag("luminex_flower_stone");
         private static TagKey<Block> tag(String name) {
             return TagKey.create(Registries.BLOCK, new ResourceLocation("foworld", name));
         }
+
     }
+
     public static class Items {
         // 定义一个名为 non_renameable 的标签
         public static final TagKey<Item> NON_RENAMEABLE = tag("non_renameable");

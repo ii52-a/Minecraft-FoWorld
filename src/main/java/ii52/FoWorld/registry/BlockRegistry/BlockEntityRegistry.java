@@ -2,6 +2,8 @@ package ii52.FoWorld.registry.BlockRegistry;
 
 import ii52.FoWorld.blockentity.FoBenchBlockEntity;
 import ii52.FoWorld.blockentity.LowerLeverCrusherEntity;
+import ii52.FoWorld.blockentity.UnitEntity.GlowAltarEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.*;
@@ -34,6 +36,11 @@ public class BlockEntityRegistry {
                             .build(null) // build(null) 表示目前没有复杂的数据迁移逻辑（DataFixer）
             );
 
+    public static final RegistryObject<BlockEntityType<GlowAltarEntity>>GLOW_ALTAR=
+            BLOCK_ENTITIES.register("glow_altar", () ->
+                    BlockEntityType.Builder.of(GlowAltarEntity::new, BlockRegistry.GLOW_ALTAR.get())
+                            .build(null)
+            );
 
     /**
      * 这个方法会在你的主类（FoWorld.java）里被调用。

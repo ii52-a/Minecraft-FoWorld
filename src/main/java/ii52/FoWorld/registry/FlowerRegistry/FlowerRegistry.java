@@ -2,6 +2,7 @@ package ii52.FoWorld.registry.FlowerRegistry;
 
 
 import ii52.FoWorld.block.FoBenchBlock;
+import ii52.FoWorld.block.flower.DeepOrchid;
 import ii52.FoWorld.block.flower.LuminexFlower;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -30,6 +31,14 @@ public class FlowerRegistry {
                     .noOcclusion() // 必须，否则花背后的方块会消失
             )
     );
+    public static final RegistryObject<Block> DEEP_ORCHID = BLOCKS.register(
+            "deep_orchid", // 建议统一用下划线小写，作为 ID
+            () -> new DeepOrchid(BlockBehaviour.Properties.copy(Blocks.POPPY) // 建议拷贝 poppy(罂粟) 的属性，自带半透明和无碰撞
+                    .instabreak() // 一挖就掉
+                    .lightLevel(state -> 5)
+                    .noOcclusion() // 必须，否则花背后的方块会消失
+            )
+    );
 
 
     /**
@@ -38,6 +47,10 @@ public class FlowerRegistry {
     public static final RegistryObject<Item> LUMINEX_FLOWER_ITEM = ITEMS.register(
             "luminex_flower", // 这里的 ID 建议和 Block 保持一致
             () -> new BlockItem(LUMINEX_FLOWER.get(), new Item.Properties())
+    );
+    public static final RegistryObject<Item> DEEP_ORCHID_ITEM = ITEMS.register(
+            "deep_orchid", // 这里的 ID 建议和 Block 保持一致
+            () -> new BlockItem(DEEP_ORCHID.get(), new Item.Properties())
     );
 
     /**

@@ -25,7 +25,7 @@ public class ItemRegistry{
     //复合钻石剑
     public static final RegistryObject<SwordItem> SUPER_DIAMOND_SWORD =
             ITEMS.register("super_diamond_sword",() ->
-                    new SwordItem(Tiers.DIAMOND,4,-2.4f,new Item.Properties())
+                    new SwordItem(Tiers.DIAMOND,3,-2.3f,new Item.Properties())
             );
 
     //复合钻石镐
@@ -45,7 +45,11 @@ public class ItemRegistry{
     // 石制重锤
     public static final RegistryObject<PickaxeItem>STONE_HEAVY_HAMMER=
             ITEMS.register("stone_heavy_hammer",()->
-                    new PickaxeItem(Tiers.STONE,7,-3.4f,new Item.Properties().durability(355))
+                    new PickaxeItem(Tiers.STONE,8,-3.4f,new Item.Properties().durability(355))
+            );
+    public static final RegistryObject<PickaxeItem>IRON_HEAVY_HAMMER=
+            ITEMS.register("iron_heavy_hammer",()->
+                    new PickaxeItem(Tiers.IRON,8,-3.3f,new Item.Properties().durability(484))
             );
 
     public static void register(IEventBus bus){

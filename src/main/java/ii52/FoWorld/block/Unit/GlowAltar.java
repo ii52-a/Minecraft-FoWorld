@@ -1,11 +1,9 @@
-package ii52.FoWorld.block.flower;
+package ii52.FoWorld.block.Unit;
 
-import ii52.FoWorld.blockentity.FlowerEntity.LuminexFlowerEntity;
-import ii52.FoWorld.registry.FlowerRegistry.FlowerEntityRegistry;
+import ii52.FoWorld.blockentity.UnitEntity.GlowAltarEntity;
+import ii52.FoWorld.registry.BlockRegistry.BlockEntityRegistry;
 import ii52.FoWorld.registry.ItemRegistry;
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffects;
@@ -27,9 +25,9 @@ import org.jetbrains.annotations.Nullable;
  * 继承 FlowerBlock：让它拥有“花”的所有特性（只能种在土上、有碰撞箱等）。
  * 实现 EntityBlock：让它拥有“存储数据”的能力（绑定 BlockEntity）。
  */
-public class LuminexFlower extends FlowerBlock implements EntityBlock {
+public class GlowAltar extends FlowerBlock implements EntityBlock {
 
-    public LuminexFlower(Properties props) {
+    public GlowAltar(Properties props) {
         // super 调用父类构造函数：
         // 1. 设置这朵花在某些特定情况下提供的药水效果（发光效果）。
         // 2. 设置效果持续时间。
@@ -49,27 +47,10 @@ public class LuminexFlower extends FlowerBlock implements EntityBlock {
         if (!level.isClientSide) {
             // 检查玩家手里拿的是不是我们注册的“荧光粉尘”
             if (itemstack.is(ItemRegistry.LUMINESCENT_DUST.get())) {
-                // 尝试获取该位置的“大脑”（BlockEntity）
                 BlockEntity be = level.getBlockEntity(pos);
 
-                if (be instanceof LuminexFlowerEntity flowerEntity) {
-                    if (flowerEntity.getGlow() <flowerEntity.getMaxGlow()*0.9){
-                        if (!player.getAbilities().instabuild) {
-                            itemstack.shrink(1);
-                        }
+                if (be instanceof GlowAltarEntity GlowerAltarEntity) {
 
-                        // 2. 增加能量：调用 BlockEntity 里的方法增加 glow 值
-                        flowerEntity.addGlow(10);
-
-                        // 3. 反馈：在方块位置播放一个清脆的声音（紫水晶簇音效）
-                        level.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 1.0F, 1.0F);
-
-                        return InteractionResult.SUCCESS; // 告诉游戏：交互成功，别再做别的了
-                    }
-                    // 1. 消耗粉尘：如果不是创造模式，则扣除一个
-                    else{
-                        return InteractionResult.FAIL;
-                    }
                 }
             }
         }
@@ -93,7 +74,7 @@ public class LuminexFlower extends FlowerBlock implements EntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new LuminexFlowerEntity(pos, state);
+        return new GlowAltarEntity(pos, state);
     }
 
 
@@ -106,11 +87,11 @@ public class LuminexFlower extends FlowerBlock implements EntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         // 检查传入的类型是否是我们注册的那种大脑
-        if (type == FlowerEntityRegistry.LUMINEX_FLOWER_BE.get()) {
+        if (type == BlockEntityRegistry.GLOW_ALTAR.get()) {
             // 返回一个 lambda 表达式：告诉系统每过 1 刻，就去执行我们 Entity 类里的 tick 静态方法
             return (lvl, p, st, be) -> {
-                if (be instanceof LuminexFlowerEntity flower) {
-                    LuminexFlowerEntity.tick(lvl, p, st, flower);
+                if (be instanceof GlowAltarEntity flower) {
+                    GlowAltarEntity.tick(lvl, p, st, flower);
                 }
             };
         }

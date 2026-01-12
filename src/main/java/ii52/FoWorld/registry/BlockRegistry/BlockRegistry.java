@@ -3,6 +3,8 @@ package ii52.FoWorld.registry.BlockRegistry;
 
 import ii52.FoWorld.block.FoBenchBlock;
 import ii52.FoWorld.block.LowerLeverCrusherBlock;
+import ii52.FoWorld.block.Test3D;
+import net.minecraft.client.resources.model.Material;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -18,11 +20,7 @@ public class BlockRegistry {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, "foworld");
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "foworld");
 
-    /**
-     * 【重点修正位置】
-     * 之前你写的是 new Block(...) -> 这会导致游戏忽略你写的 FoBenchBlock 类。
-     * 现在改为 new FoBenchBlock(...) -> 这样游戏才会去执行你写的 use() 和 newBlockEntity() 方法。
-     */
+
     public static final RegistryObject<Block> FO_BENCH = BLOCKS.register(
             "fo_bench",
             () -> new FoBenchBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)
@@ -44,6 +42,7 @@ public class BlockRegistry {
             "fluorite_ore", // 注册名
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)
                       .strength(1.5f, 3.0f)
+                      .lightLevel(state -> 4)
 //                    .requiresCorrectToolForDrops() // 设置必须用稿子挖才能掉落
             )
     );
@@ -70,7 +69,26 @@ public class BlockRegistry {
 //                    .requiresCorrectToolForDrops() // 设置必须用稿子挖才能掉落
             )
     );
+    public static final RegistryObject<Block> GLOW_ALTAR = BLOCKS.register(
+            "glow_altar", // 注册名
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)
+            )
+    );
+    public static final RegistryObject<Block> LIGHT_VEINED_STONE = BLOCKS.register(
+            "light_veined_stone", // 注册名
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)
+            )
+    );
 
+    //test
+    public static final RegistryObject<Block> TEST_3D = BLOCKS.register("test_3d",
+            () -> new Test3D(BlockBehaviour.Properties.copy(Blocks.STONE) // 1. 复制石头属性
+                    .strength(2.0f)           // 2. 在属性上设置硬度
+                    .requiresCorrectToolForDrops() // 3. 在属性上设置需要工具
+                    .sound(SoundType.STONE)    // 4. 在属性上设置声音
+                    .noOcclusion()             // 5. 在属性上关闭遮挡剔除
+            ) // 6. 最后将这一整套属性传给 new Test3D()
+    );
 
     /**
      * 每一个方块通常都需要一个对应的物品（BlockItem），这样玩家才能在背包里拿着它。
@@ -101,6 +119,22 @@ public class BlockRegistry {
             "deep_glow_stone",
             () -> new BlockItem(DEEP_GLOW_STONE.get(), new Item.Properties())
     );
+    //辉光祭坛
+    public static final RegistryObject<Item> GLOW_ALTAR_ITEM = ITEMS.register(
+            "glow_altar",
+            () -> new BlockItem(GLOW_ALTAR.get(), new Item.Properties())
+    );
+    //
+    public static final RegistryObject<Item> LIGHT_VEINED_STONE_ITEM = ITEMS.register(
+            "light_veined_stone",
+            () -> new BlockItem(LIGHT_VEINED_STONE.get(), new Item.Properties())
+    );
+
+    public static final RegistryObject<Item> TEST_3D_ITEM = ITEMS.register(
+            "test_3d",
+            () -> new BlockItem(TEST_3D.get(), new Item.Properties())
+    );
+
 
 
 

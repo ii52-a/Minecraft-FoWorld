@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "foworld:fluorite_ore_0",
+    "foworld:fluorite_ore_1",
+    "minecraft:stone"
+  ]
+}

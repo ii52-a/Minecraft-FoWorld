@@ -2,12 +2,13 @@
   "type": "foworld:fo_bench_shaped",
   "pattern":[
     " D ",
-    " A ",
+    " AI",
     "   "
   ],
   "key": {
     "D": {"item": "minecraft:diamond"},
-    "A": {"item": "minecraft:diamond_sword"}
+    "A": {"item": "minecraft:diamond_sword"},
+    "I": {"item": "minecraft:iron_ingot"}
   },
   "result": {
     "item": "foworld:super_diamond_sword",

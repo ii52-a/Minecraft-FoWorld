@@ -7,10 +7,14 @@
   "item.foworld.iron_heavy_hammer": "铁制重锤",
   "block.foworld.fo_bench": "世界工作台",
   "block.foworld.lower_lever_crusher": "石制粉碎机",
-  "block.foworld.luminex_flower": "荧光花",
+  "block.foworld.luminex_flower": "荧蜕花",
+  "block.foworld.deep_orchid": "伶幽兰",
   "item.foworld.iron_dust": "铁粉尘",
   "item.foworld.luminescent_dust": "荧光粉尘",
   "block.foworld.fluorite_ore": "荧光石",
-  "block.foworld.deep_glow_stone": "暗光萤石"
-
+  "block.foworld.fluorite_ore_0": "荧光态微石",
+  "block.foworld.fluorite_ore_1": "荧光微石",
+  "block.foworld.deep_glow_stone": "暗光荧石",
+  "block.foworld.glow_altar": "辉光祭坛",
+  "block.foworld.light_veined_stone": "熠光石台"
 }

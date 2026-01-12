@@ -28,6 +28,8 @@ public class CreativeTabRegistry {
                                 output.accept(ItemRegistry.SUPER_DIAMOND_SWORD.get());
                                 output.accept(ItemRegistry.WOODEN_HEAVY_HAMMER.get());
                                 output.accept(ItemRegistry.STONE_HEAVY_HAMMER.get());
+                                output.accept(ItemRegistry.IRON_HEAVY_HAMMER.get());
+
 
                                 //机械
                                 output.accept(BlockRegistry.FO_BENCH.get());
@@ -39,12 +41,19 @@ public class CreativeTabRegistry {
 
                                 //花
                                 output.accept(FlowerRegistry.LUMINEX_FLOWER.get());
+                                output.accept(FlowerRegistry.DEEP_ORCHID.get());
 
                                 //方块
                                 output.accept(BlockRegistry.FLUORITE_ORE_0.get());
                                 output.accept(BlockRegistry.FLUORITE_ORE_1.get());
                                 output.accept(BlockRegistry.FLUORITE_ORE.get());
                                 output.accept(BlockRegistry.DEEP_GLOW_STONE.get());
+                                output.accept(BlockRegistry.GLOW_ALTAR.get());
+                                output.accept(BlockRegistry.LIGHT_VEINED_STONE.get());
+
+                                //test
+                                output.accept(BlockRegistry.TEST_3D.get());
+
 
 
 
