@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "foworld:item/tools/withered_glimmer_blade_active"
+  }
+}

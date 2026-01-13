@@ -7,11 +7,15 @@
   "item.foworld.wooden_heavy_hammer": "wooden_heavy_hammer",
   "item.foworld.stone_heavy_hammer": "stone_heavy_hammer",
   "item.foworld.iron_heavy_hammer": "iron_heavy_hammer",
+  "item.foworld.withered_glimmer_blade": "withered_glimmer_blade",
+
   "block.foworld.fo_bench": "FoWorld_crafting_table",
   "block.foworld.lower_lever_crusher": "stone_crusher",
 
   "block.foworld.luminex_flower": "luminex_flower",
   "block.foworld.deep_orchid": "deep_orchid",
+  "block.foworld.glow_tombstone": "glow_tombstone",
+  "block.foworld.chiseled_glow_vein_quartz": "chiseled_glow_vein_quartz",
 
   "block.foworld.fluorite_ore": "fluorite_ore",
   "block.foworld.fluorite_ore_0": "fluorite_ore_mid0",

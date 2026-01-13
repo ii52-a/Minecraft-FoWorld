@@ -1,11 +1,13 @@
 package ii52.FoWorld.registry;
 
 import ii52.FoWorld.item.GlowDiamondPickaxeItem;
+import ii52.FoWorld.item.WitheredGlimmerBlade;
 import ii52.FoWorld.tier.FoTier;
 import net.minecraft.world.item.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.*;
+import org.lwjgl.system.windows.WINDOWPLACEMENT;
 
 public class ItemRegistry{
     public static final DeferredRegister<Item> ITEMS=
@@ -36,6 +38,8 @@ public class ItemRegistry{
 
     //辉光钻石镐
     public static final RegistryObject<PickaxeItem> GLOW_DIAMOND_PICKAXE=GlowDiamondPickaxeItem.registry(ITEMS);
+    //枯光石刃
+public static final RegistryObject<SwordItem> WITHERED_GLIMMER_BLADE= WitheredGlimmerBlade.registry(ITEMS);
     //  ---重锤系列---
     // 木制重锤
     public static final RegistryObject<PickaxeItem>WOODEN_HEAVY_HAMMER=

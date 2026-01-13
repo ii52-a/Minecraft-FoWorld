@@ -2,8 +2,8 @@ package ii52.FoWorld.registry.BlockRegistry;
 
 
 import ii52.FoWorld.block.FoBenchBlock;
+import ii52.FoWorld.block.GlowTombStone;
 import ii52.FoWorld.block.LowerLeverCrusherBlock;
-import ii52.FoWorld.block.Test3D;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -69,6 +69,7 @@ public class BlockRegistry {
 //                    .requiresCorrectToolForDrops() // 设置必须用稿子挖才能掉落
             )
     );
+    //辉光祭坛
     public static final RegistryObject<Block> GLOW_ALTAR = BLOCKS.register(
             "glow_altar", // 注册名
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)
@@ -80,14 +81,20 @@ public class BlockRegistry {
             )
     );
 
-    //test
-    public static final RegistryObject<Block> TEST_3D = BLOCKS.register("test_3d",
-            () -> new Test3D(BlockBehaviour.Properties.copy(Blocks.STONE) // 1. 复制石头属性
+    public static final RegistryObject<Block> CHISELED_GLOW_VEIN_QUARTZ = BLOCKS.register(
+            "chiseled_glow_vein_quartz", // 注册名
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)
+            )
+    );
+
+    //辉光坟墓
+    public static final RegistryObject<Block> GLOW_TOMBSTONE = BLOCKS.register("glow_tombstone",
+            () -> new GlowTombStone(BlockBehaviour.Properties.copy(Blocks.STONE) // 1. 复制石头属性
                     .strength(2.0f)           // 2. 在属性上设置硬度
                     .requiresCorrectToolForDrops() // 3. 在属性上设置需要工具
                     .sound(SoundType.STONE)    // 4. 在属性上设置声音
                     .noOcclusion()             // 5. 在属性上关闭遮挡剔除
-            ) // 6. 最后将这一整套属性传给 new Test3D()
+            )
     );
 
     /**
@@ -130,11 +137,17 @@ public class BlockRegistry {
             () -> new BlockItem(LIGHT_VEINED_STONE.get(), new Item.Properties())
     );
 
-    public static final RegistryObject<Item> TEST_3D_ITEM = ITEMS.register(
-            "test_3d",
-            () -> new BlockItem(TEST_3D.get(), new Item.Properties())
+    public static final RegistryObject<Item> GLOWTOMBSTONE_ITEM = ITEMS.register(
+            "glow_tombstone",
+            () -> new BlockItem(GLOW_TOMBSTONE.get(), new Item.Properties())
     );
 
+    public static final RegistryObject<Item> CHISELED_GLOW_VEIN_QUARTZ_ITEM = ITEMS.register(
+            "chiseled_glow_vein_quartz",
+            () -> new BlockItem(CHISELED_GLOW_VEIN_QUARTZ.get(), new Item.Properties())
+    );
+
+//chiseled_glow_vein_quartz
 
 
 

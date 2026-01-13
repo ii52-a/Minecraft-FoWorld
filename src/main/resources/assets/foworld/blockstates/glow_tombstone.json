@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "foworld:block/glow_tombstone" },
+    "facing=south": { "model": "foworld:block/glow_tombstone", "y": 180 },
+    "facing=west":  { "model": "foworld:block/glow_tombstone", "y": 270 },
+    "facing=east":  { "model": "foworld:block/glow_tombstone", "y": 90 }
+  }
+}

@@ -29,6 +29,7 @@ public class CreativeTabRegistry {
                                 output.accept(ItemRegistry.WOODEN_HEAVY_HAMMER.get());
                                 output.accept(ItemRegistry.STONE_HEAVY_HAMMER.get());
                                 output.accept(ItemRegistry.IRON_HEAVY_HAMMER.get());
+                                output.accept(ItemRegistry.WITHERED_GLIMMER_BLADE.get());
 
 
                                 //机械
@@ -50,9 +51,10 @@ public class CreativeTabRegistry {
                                 output.accept(BlockRegistry.DEEP_GLOW_STONE.get());
                                 output.accept(BlockRegistry.GLOW_ALTAR.get());
                                 output.accept(BlockRegistry.LIGHT_VEINED_STONE.get());
+                                output.accept(BlockRegistry.CHISELED_GLOW_VEIN_QUARTZ.get());
 
                                 //test
-                                output.accept(BlockRegistry.TEST_3D.get());
+                                output.accept(BlockRegistry.GLOWTOMBSTONE.get());
 
 
 
