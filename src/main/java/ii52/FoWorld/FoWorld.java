@@ -1,6 +1,7 @@
 package ii52.FoWorld;
 
 import com.mojang.logging.LogUtils;
+import com.user.Items;
 import ii52.FoWorld.registry.*;
 import ii52.FoWorld.registry.BlockRegistry.BlockEntityRegistry;
 import ii52.FoWorld.registry.BlockRegistry.BlockRegistry;
@@ -50,6 +51,8 @@ public class FoWorld
 
         RecipeRegistry.TYPES.register(modEventBus);            //注册类型
         RecipeRegistry.SERIALIZERS.register(modEventBus);      //注册json序列化
+
+        Items.register(modEventBus);
 
 
         // 注册一些生命周期监听（比如通用启动、加入物品栏等）

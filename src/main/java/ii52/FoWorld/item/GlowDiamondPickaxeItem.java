@@ -84,8 +84,7 @@ public class GlowDiamondPickaxeItem extends PickaxeItem {
                     0.05                      // 速度：粒子飘动的初始速度
             );
 
-            // 5. 惩罚机制：因为发动了“感应”，所以额外消耗 1 点耐久
-            // 参数 p -> {} 是当物品损坏时的回调，这里留空
+
             stack.hurtAndBreak(1, player, p -> {});
         }
         stack.hurtAndBreak(1, player, p -> {});

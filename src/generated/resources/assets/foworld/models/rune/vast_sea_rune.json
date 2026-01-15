@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "foworld:item/rune/vast_sea_rune"
+  }
+}

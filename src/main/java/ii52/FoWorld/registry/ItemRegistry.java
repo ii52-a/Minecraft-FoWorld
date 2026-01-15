@@ -9,6 +9,8 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.*;
 import org.lwjgl.system.windows.WINDOWPLACEMENT;
 
+import java.lang.reflect.Array;
+
 public class ItemRegistry{
     public static final DeferredRegister<Item> ITEMS=
             DeferredRegister.create(ForgeRegistries.ITEMS,"foworld");
@@ -53,8 +55,9 @@ public static final RegistryObject<SwordItem> WITHERED_GLIMMER_BLADE= WitheredGl
             );
     public static final RegistryObject<PickaxeItem>IRON_HEAVY_HAMMER=
             ITEMS.register("iron_heavy_hammer",()->
-                    new PickaxeItem(Tiers.IRON,8,-3.3f,new Item.Properties().durability(484))
+                    new PickaxeItem(Tiers.IRON,8,-3.3f,new Item.Properties().durability(584))
             );
+
 
     public static void register(IEventBus bus){
         ITEMS.register(bus);

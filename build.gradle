@@ -207,3 +207,17 @@ configurations.all {
         // force 'org.apache.logging.log4j:log4j-core:2.17.1'
     }
 }
+sourceSets {
+    main {
+        resources {
+            srcDir 'src/generated/resources'
+            // 排除掉生成的缓存文件，防止重复报错
+            exclude '.cache'
+        }
+    }
+}
+
+tasks.withType(ProcessResources).configureEach {
+    // 核心：允许资源重复，解决报错
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}

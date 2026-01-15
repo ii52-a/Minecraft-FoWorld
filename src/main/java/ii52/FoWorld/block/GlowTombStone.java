@@ -4,10 +4,14 @@ import ii52.FoWorld.registry.ItemRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -56,11 +60,12 @@ public class GlowTombStone extends HorizontalDirectionalBlock {
                     // 它会处理实体的基础属性、是否为左撇子、难度加成等。
                     // 必须在 setItemSlot 之前调用，否则系统默认发放的弓会顶掉你的自定义剑。
                     skeleton.finalizeSpawn(serverLevel, level.getCurrentDifficultyAt(pos), MobSpawnType.EVENT, null, null);
-
-                    skeleton.setHealth(40);
+                    skeleton.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,1999,2));
+                    skeleton.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,1999,2));
 
                     // 6. 【装备覆盖】强行将骷髅主手的武器替换为你模组中的“超级钻石剑”
                     // 因为此时它没拿弓，骷髅的 AI 会自动切换为“近战模式”
+                    skeleton.setItemSlot(EquipmentSlot.HEAD,new ItemStack(Items.IRON_HELMET));
                     skeleton.setItemSlot(net.minecraft.world.entity.EquipmentSlot.MAINHAND, new ItemStack(ItemRegistry.WITHERED_GLIMMER_BLADE.get()));
 
                     // (可选) 设置装备掉落率，0.2f 代表 20% 几率掉落这把剑
@@ -78,6 +83,7 @@ public class GlowTombStone extends HorizontalDirectionalBlock {
         // 9. 【父类回调】最后执行父类的破坏逻辑（处理掉落物、经验球等）
         super.playerWillDestroy(level, pos, state, player);
     }
+
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     // --- 碰撞箱 (VoxelShape) 定义说明 ---

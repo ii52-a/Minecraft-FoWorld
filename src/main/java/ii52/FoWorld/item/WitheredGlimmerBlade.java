@@ -27,8 +27,8 @@ public class WitheredGlimmerBlade extends SwordItem {
     public WitheredGlimmerBlade(Item.Properties properties) {
         super(
                 Tiers.STONE,
-                3,               // 攻击伤害：在钻石级基础上增加 1 点
-                -2.3F,           // 攻击速度：这是攻速偏移量，-2.8 是原版镐子的标准手感
+                4,               // 攻击伤害：在钻石级基础上增加 1 点
+                -2.9F,           // 攻击速度：这是攻速偏移量，-2.8 是原版镐子的标准手感
                 properties
         );
     }
@@ -52,7 +52,10 @@ public class WitheredGlimmerBlade extends SwordItem {
             stack.getOrCreateTag().putInt(TAG_ATTRACTS, number);
         }
     }
-
+    @Override
+    public boolean isValidRepairItem(ItemStack toRepair, ItemStack repairMaterial) {
+        return false; // 铁砧无法放入材料修理
+    }
 
     @Override
     public Component getName(ItemStack stack) {
@@ -74,29 +77,30 @@ public class WitheredGlimmerBlade extends SwordItem {
             if (!level.isClientSide() && level instanceof ServerLevel serverLevel) {
 
 
-                attacker.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 2)); //
-
+                attacker.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 180, 1)); //
+                target.hurt(attacker.damageSources().magic(), 2.0f);
                 // --- 效果 B：目标束缚 (短暂减速) ---
                 target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 1));
+
 
                 // --- 效果 C：爆发粒子 (圆环或喷涌) ---
                 serverLevel.sendParticles(
                         ParticleTypes.END_ROD,
-                        attacker.getX(), attacker.getY() + 1.0, attacker.getZ(),
-                        20,   // 数量
-                        0.5, 0.2, 0.5, // 范围
+                        target.getX(), target.getY() + 1.0, target.getZ(),
+                        10,   // 数量
+                        0.5, 0, 0.5, // 范围
                         0.05  // 速度
                 );
-
                 // 4. 重置计数为 0
                 this.SetOrUpdateTagAttract(stack, level, 0);
+                stack.hurtAndBreak(1,attacker,p->{});
             }
         }
     }
 
     public static RegistryObject<SwordItem> registry(DeferredRegister<Item> items){
         return items.register("withered_glimmer_blade",() ->
-                new WitheredGlimmerBlade(new Item.Properties().durability(120))
+                new WitheredGlimmerBlade(new Item.Properties().durability(110))
         );
     }
 

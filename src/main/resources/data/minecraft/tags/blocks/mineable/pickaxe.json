@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "foworld:fluorite_ore",
+    "foworld:fluorite_ore_0",
+    "foworld:fluorite_ore_1",
+    "foworld:deep_glow_stone",
+    "foworld:glow_altar",
+    "foworld:glow_tombstone",
+    "foworld:light_veined_stone"
+  ]
+}

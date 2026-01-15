@@ -54,7 +54,7 @@ public class CreativeTabRegistry {
                                 output.accept(BlockRegistry.CHISELED_GLOW_VEIN_QUARTZ.get());
 
                                 //test
-                                output.accept(BlockRegistry.GLOWTOMBSTONE.get());
+                                output.accept(BlockRegistry.GLOW_TOMBSTONE.get());
 
 
 

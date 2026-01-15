@@ -1,6 +1,20 @@
+
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "foworld:item/tools/withered_glimmer_blade_active"
-  }
+    "layer0": "foworld:item/tools/withered_glimmer_blade_0"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "foworld:attract_count": 1
+      },
+      "model": "foworld:item/withered_glimmer_blade_1"
+    },{
+      "predicate": {
+        "foworld:attract_count": 2
+      },
+      "model": "foworld:item/withered_glimmer_blade_active"
+    }
+  ]
 }
