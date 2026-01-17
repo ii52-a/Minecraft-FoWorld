@@ -1,13 +1,16 @@
 package ii52.FoWorld.registry;
 
+import com.user.Items;
 import ii52.FoWorld.FoWorld;
 import ii52.FoWorld.registry.BlockRegistry.BlockRegistry;
 import ii52.FoWorld.registry.FlowerRegistry.FlowerRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class CreativeTabRegistry {
@@ -18,7 +21,7 @@ public class CreativeTabRegistry {
     public static final RegistryObject<CreativeModeTab> FOWORLD_TAB =
             TABS.register("foworld_tab", () ->
                     CreativeModeTab.builder()
-                            .title(Component.translatable("FoWorld未来之征"))
+                            .title(Component.translatable("itemGroup.foworld.main_tab"))
                             .icon(() -> new ItemStack(BlockRegistry.FO_BENCH.get()))
                             .displayItems((parameters, output) -> {
 
@@ -55,6 +58,8 @@ public class CreativeTabRegistry {
 
                                 //test
                                 output.accept(BlockRegistry.GLOW_TOMBSTONE.get());
+
+                                Items.RUNE_MAP.values().forEach(rune -> output.accept(rune.get()));
 
 
 

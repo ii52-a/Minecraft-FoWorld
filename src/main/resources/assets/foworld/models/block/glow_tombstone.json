@@ -1,4 +1,6 @@
 {
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "foworld:block/light_veined_stone",
 		"particle": "foworld:block/light_veined_stone"
@@ -45,7 +47,7 @@
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"translation": [-0.25, 3, 0.75],
+			"translation": [-0.25, 3.25, 0.75],
 			"scale": [0.5, 0.5, 0.5]
 		},
 		"thirdperson_lefthand": {

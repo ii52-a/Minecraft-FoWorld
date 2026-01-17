@@ -14,9 +14,10 @@ public class SimpleItemDatagen extends ItemModelProvider {
     @Override
     protected void registerModels() {
         // 自动循环：给 List 里的每个名字生成一个 JSON
-        for (String name : Items.RUNES) {
+        for (String path : Items.RUNES) {
+            String name = path.substring(path.lastIndexOf("/") + 1);
             withExistingParent(name, "item/generated")
-                    .texture("layer0", new ResourceLocation("foworld", "item/" + name));
+                    .texture("layer0", new ResourceLocation("foworld", "item/" + path));
         }
     }
 }
