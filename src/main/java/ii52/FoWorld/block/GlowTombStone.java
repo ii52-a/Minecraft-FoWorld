@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -95,7 +96,12 @@ public class GlowTombStone extends HorizontalDirectionalBlock {
     /**
      * 当方块朝向北 (NORTH, 靠近 Z=0) 时的碰撞箱
      */
-
+    @Override
+    public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
+        // PathComputationType 有三种：LAND (陆地), WATER (水), AIR (飞行)
+        // 返回 false 表示该方块是障碍物，AI 会尝试绕路而非直线撞墙
+        return false;
+    }
     private static final VoxelShape NORTH = Shapes.or(
             Block.box(0, 0, 0, 16, 2, 16),
             Block.box(7.15, 1.15, 0.65, 9.85, 14.85, 1.85),   // 立柱

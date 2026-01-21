@@ -2,9 +2,15 @@ package ii52.FoWorld.registry.BlockRegistry;
 
 
 import ii52.FoWorld.block.FoBenchBlock;
+import ii52.FoWorld.block.GlowTntBlock;
 import ii52.FoWorld.block.GlowTombStone;
 import ii52.FoWorld.block.LowerLeverCrusherBlock;
+import ii52.FoWorld.block.Unit.GlowAltar;
+import ii52.FoWorld.block.Unit.LightVeinedStone;
+import ii52.FoWorld.blockentity.GlowTntEntity;
 import net.minecraft.client.resources.model.Material;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -72,12 +78,12 @@ public class BlockRegistry {
     //辉光祭坛
     public static final RegistryObject<Block> GLOW_ALTAR = BLOCKS.register(
             "glow_altar", // 注册名
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)
+            () -> new GlowAltar(BlockBehaviour.Properties.copy(Blocks.STONE)
             )
     );
     public static final RegistryObject<Block> LIGHT_VEINED_STONE = BLOCKS.register(
             "light_veined_stone", // 注册名
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)
+            () -> new LightVeinedStone(BlockBehaviour.Properties.copy(Blocks.STONE)
             )
     );
 
@@ -85,6 +91,9 @@ public class BlockRegistry {
             "chiseled_glow_vein_quartz", // 注册名
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)
             )
+    );
+    public static final RegistryObject<Block> GLOW_TNT = BLOCKS.register("glow_tnt",
+            () -> new GlowTntBlock(BlockBehaviour.Properties.copy(Blocks.TNT))
     );
 
     //辉光坟墓
@@ -140,6 +149,10 @@ public class BlockRegistry {
     public static final RegistryObject<Item> GLOWTOMBSTONE_ITEM = ITEMS.register(
             "glow_tombstone",
             () -> new BlockItem(GLOW_TOMBSTONE.get(), new Item.Properties())
+    );
+    public static final RegistryObject<Item> GLOW_TNT_ITEM = ITEMS.register(
+            "glow_tnt",
+            () -> new BlockItem(GLOW_TNT.get(), new Item.Properties())
     );
 
     public static final RegistryObject<Item> CHISELED_GLOW_VEIN_QUARTZ_ITEM = ITEMS.register(

@@ -44,6 +44,7 @@ public class FoWorld
         BlockRegistry.register(modEventBus);       // 注册方块
         ItemRegistry.register(modEventBus);        // 注册物品
         BlockEntityRegistry.register(modEventBus); // 注册方块实体
+        EntityRegistry.register(modEventBus);
         MenuRegistry.register(modEventBus);        // 注册 GUI 菜单逻辑
 
         FlowerEntityRegistry.register(modEventBus);

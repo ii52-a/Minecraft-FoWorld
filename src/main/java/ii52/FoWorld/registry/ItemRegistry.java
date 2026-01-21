@@ -38,6 +38,8 @@ public class ItemRegistry{
                    new PickaxeItem(Tiers.DIAMOND,2,-2.7f,new Item.Properties())
             );
 
+
+
     //辉光钻石镐
     public static final RegistryObject<PickaxeItem> GLOW_DIAMOND_PICKAXE=GlowDiamondPickaxeItem.registry(ITEMS);
     //枯光石刃

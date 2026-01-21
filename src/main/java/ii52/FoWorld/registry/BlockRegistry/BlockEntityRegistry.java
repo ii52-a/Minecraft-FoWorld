@@ -1,8 +1,12 @@
 package ii52.FoWorld.registry.BlockRegistry;
 
 import ii52.FoWorld.blockentity.FoBenchBlockEntity;
+import ii52.FoWorld.blockentity.GlowTntEntity;
 import ii52.FoWorld.blockentity.LowerLeverCrusherEntity;
 import ii52.FoWorld.blockentity.UnitEntity.GlowAltarEntity;
+import ii52.FoWorld.blockentity.UnitEntity.LightVeinedStoneEntity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -41,6 +45,12 @@ public class BlockEntityRegistry {
                     BlockEntityType.Builder.of(GlowAltarEntity::new, BlockRegistry.GLOW_ALTAR.get())
                             .build(null)
             );
+    public static final RegistryObject<BlockEntityType<LightVeinedStoneEntity>>LIGHT_VEINED_STONE=
+            BLOCK_ENTITIES.register("light_veined_stone", () ->
+                    BlockEntityType.Builder.of(LightVeinedStoneEntity::new, BlockRegistry.LIGHT_VEINED_STONE.get())
+                            .build(null)
+            );
+
 
     /**
      * 这个方法会在你的主类（FoWorld.java）里被调用。
