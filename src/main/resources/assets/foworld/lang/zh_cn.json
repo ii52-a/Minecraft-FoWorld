@@ -19,5 +19,8 @@
   "block.foworld.fluorite_ore_1": "荧光微石",
   "block.foworld.deep_glow_stone": "暗光荧石",
   "block.foworld.glow_altar": "辉光祭坛",
-  "block.foworld.light_veined_stone": "熠光石台"
+  "block.foworld.light_veined_stone": "熠光石台",
+  "item.foworld.glowing_steak": "闪光牛排",
+  "item.foworld.glowing_raw_beef": "调制闪光生牛肉",
+  "effect.foworld.glow_poison": "闪光中毒"
 }

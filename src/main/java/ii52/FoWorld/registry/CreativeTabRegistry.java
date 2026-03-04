@@ -42,6 +42,10 @@ public class CreativeTabRegistry {
                                 //材料
                                 output.accept(ItemRegistry.IRON_DUST.get());
                                 output.accept(ItemRegistry.LUMINESCENT_DUST.get());
+                                
+                                //食物
+                                output.accept(ItemRegistry.GLOWING_STEAK.get());
+                                output.accept(ItemRegistry.GLOWING_RAW_BEEF.get());
 
                                 //花
                                 output.accept(FlowerRegistry.LUMINEX_FLOWER.get());

@@ -1,8 +1,10 @@
 package ii52.FoWorld.registry;
 
+import ii52.FoWorld.Serializer.GlowAltarSerializer;
 import ii52.FoWorld.recipe.CrushingRecipe;
 import ii52.FoWorld.recipe.FoBenchShapedRecipe;
 import ii52.FoWorld.recipe.FoBenchShapelessRecipe;
+import ii52.FoWorld.recipe.GlowAltarRecipe;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -45,8 +47,13 @@ public class RecipeRegistry{
                 public String toString() { return "foworld:flowering"; }
             });
 
+    public static final RegistryObject<RecipeSerializer<GlowAltarRecipe>> GLOW_ALTAR_SERIALIZER =
+            SERIALIZERS.register("glow_altar", GlowAltarSerializer::new);
 
-
-
+    public static final RegistryObject<RecipeType<GlowAltarRecipe>> GLOW_ALTAR_TYPE =
+            TYPES.register("glow_altar", () -> new RecipeType<>() {
+                @Override
+                public String toString() { return "foworld:glow_altar"; }
+            });
 
 }

@@ -53,6 +53,8 @@ public class FoWorld
         RecipeRegistry.TYPES.register(modEventBus);            //注册类型
         RecipeRegistry.SERIALIZERS.register(modEventBus);      //注册json序列化
 
+        EffectRegistry.register(modEventBus);                   //注册效果
+
         Items.register(modEventBus);
 
 

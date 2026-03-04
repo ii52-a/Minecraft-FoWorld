@@ -1,0 +1,16 @@
+{
+  "type": "foworld:glow_altar",
+  "ingredients": [
+    {
+      "item": "minecraft:cooked_beef"
+    },
+    {
+      "item": "minecraft:glowstone_dust"
+    }
+  ],
+  "result": {
+    "item": "foworld:glowing_steak",
+    "count": 1
+  },
+  "processingTime": 200
+}

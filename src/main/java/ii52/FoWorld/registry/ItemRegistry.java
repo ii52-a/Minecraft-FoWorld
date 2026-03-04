@@ -1,9 +1,12 @@
 package ii52.FoWorld.registry;
 
+import ii52.FoWorld.effect.GlowPoisonEffect;
 import ii52.FoWorld.item.GlowDiamondPickaxeItem;
+import ii52.FoWorld.item.GlowingRawBeefItem;
 import ii52.FoWorld.item.WitheredGlimmerBlade;
 import ii52.FoWorld.tier.FoTier;
 import net.minecraft.world.item.*;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.*;
@@ -24,6 +27,21 @@ public class ItemRegistry{
     public static final RegistryObject<Item> LUMINESCENT_DUST=
             ITEMS.register("luminescent_dust",()->
                     new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> GLOWING_STEAK=
+            ITEMS.register("glowing_steak",()->
+                    new Item(new Item.Properties().food(new FoodProperties.Builder()
+                            .nutrition(8)
+                            .saturationMod(0.8F)
+                            .build())));
+
+    public static final RegistryObject<Item> GLOWING_RAW_BEEF=
+            ITEMS.register("glowing_raw_beef",()->
+                    new GlowingRawBeefItem(new Item.Properties().food(new FoodProperties.Builder()
+                            .nutrition(3)
+                            .saturationMod(0.3F)
+                            .meat()
+                            .build())));
 
     //工具item
     //复合钻石剑
