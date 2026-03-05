@@ -59,8 +59,3 @@ First Stage:基于主世界的原版增强
 - 现象 1：在主世界使用 `/locate biome foworld:skylight_forest` 时提示“无法在合理的距离找到群系”。
 - 根因 1：当前工程没有把 `foworld:skylight_forest` 注入主世界噪声群系分布；`forge:add_features` 只能给“已存在群系”加地物，不会新增群系。
 - 现象 2：将世界设为单一天光群系时崩溃，报错 `Feature order cycle found`。
-- 根因 2：`deep_glow_stone_placed` 被错误地注入到 `vegetal_decoration` 阶段（它应属于地下矿物阶段），导致同一群系内地物阶段依赖循环。
-- 修复：将天光群系的植被注入只保留 `skylight_tree_placed`，移除 `deep_glow_stone_placed`，避免特征顺序循环。
-- 结论：
-  - 天光群系“在主世界无法 locate”是设计现状（需 TerraBlender 等方案才能注入主世界）。
-  - 单一天光群系崩溃问题已通过修复地物注入阶段解决。
