@@ -53,3 +53,12 @@ First Stage:基于主世界的原版增强
             制作多种符石，尝试使用批量生成
             平衡荧光坟墓的骷髅属性
 
+
+---
+## 🌍 天光群系定位问题排查（1.20.1）
+- 现象：使用 `/locate biome foworld:skylight_forest` 时提示“无法在合理的距离找到群系”。
+- 根因：当前工程里并没有把 `foworld:skylight_forest` 注入主世界噪声群系分布。
+  - `data/foworld/forge/biome_modifier/*.json` 只在“已有群系”上添加地物（`forge:add_features`），不会新增群系本身。
+  - 因此在主世界执行定位时，搜索不到该群系是预期结果。
+- 现有状态：`foworld:skylight_forest` 被用于 `skylight_dimension` 的固定群系维度中，可在该维度中出现。
+- 结论：若希望在主世界可定位，需要额外接入可注入主世界群系分布的方案（如 TerraBlender Region），而不是仅使用 `add_features`。

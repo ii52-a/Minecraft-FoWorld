@@ -1,6 +1,9 @@
 {
   "type": "forge:add_features",
   "biomes": "#foworld:is_skylight_forest",
-  "features": ["foworld:deep_glow_stone_placed"],
-  "step": "surface_structures"
+  "features": [
+    "foworld:skylight_tree_placed",
+    "foworld:deep_glow_stone_placed"
+  ],
+  "step": "vegetal_decoration"
 }
