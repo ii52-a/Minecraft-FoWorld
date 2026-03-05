@@ -2,8 +2,11 @@
   "type": "forge:add_features",
   "biomes": "#foworld:is_skylight_forest",
   "features": [
+    "minecraft:trees_plains",
+    "minecraft:flower_default",
+    "minecraft:patch_grass_plain",
     "foworld:skylight_tree_placed",
-    "foworld:deep_glow_stone_placed"
+    "foworld:deep_orchid_placed"
   ],
   "step": "vegetal_decoration"
 }

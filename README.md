@@ -56,9 +56,30 @@ First Stage:基于主世界的原版增强
 
 ---
 ## 🌍 天光群系定位问题排查（1.20.1）
-- 现象：使用 `/locate biome foworld:skylight_forest` 时提示“无法在合理的距离找到群系”。
-- 根因：当前工程里并没有把 `foworld:skylight_forest` 注入主世界噪声群系分布。
-  - `data/foworld/forge/biome_modifier/*.json` 只在“已有群系”上添加地物（`forge:add_features`），不会新增群系本身。
-  - 因此在主世界执行定位时，搜索不到该群系是预期结果。
-- 现有状态：`foworld:skylight_forest` 被用于 `skylight_dimension` 的固定群系维度中，可在该维度中出现。
-- 结论：若希望在主世界可定位，需要额外接入可注入主世界群系分布的方案（如 TerraBlender Region），而不是仅使用 `add_features`。
+- 现象 1：在主世界使用 `/locate biome foworld:skylight_forest` 时提示“无法在合理的距离找到群系”。
+- 根因 1：当前工程没有把 `foworld:skylight_forest` 注入主世界噪声群系分布；`forge:add_features` 只能给“已存在群系”加地物，不会新增群系。
+- 现象 2：将世界设为单一天光群系时崩溃，报错 `Feature order cycle found`。
+- 根因 2（最终定位）：`foworld:skylight_tree_placed` 同时被两个 biome modifier 注入到同一群系（`#minecraft:is_overworld` 和 `#foworld:is_skylight_forest`），在同一步骤与其他地物混排后形成前后顺序环，触发 feature sorter 循环依赖。
+- 修复：移除 `add_skylight_tree_to_overworld.json`，避免对同一群系重复注入 `skylight_tree_placed`。
+- 结论：
+  - 天光群系“在主世界无法 locate”是设计现状（需 TerraBlender 等方案才能注入主世界）。
+  - 单一天光群系崩溃问题已通过移除重复地物注入修复。
+
+## 🧭 天光群系创建与排错方法（给协作 AI）
+1. **先保证群系会被实际装饰**：
+   - 在 `forge biome_modifier` 里给 `#foworld:is_skylight_forest` 注入植被地物（树、草、花）。
+   - 推荐把原版稳定地物先加上（如 `minecraft:trees_plains`、`minecraft:flower_default`、`minecraft:patch_grass_plain`），再叠加自定义地物。
+2. **树木放置规则要可落地**：
+   - `placed_feature` 使用 `count_extra + in_square + heightmap + biome` 组合，确保尝试点位在地表。
+   - 避免使用会把绝大多数尝试点过滤掉的 placement 规则。
+3. **地下特征与植被特征分阶段**：
+   - 矿石类放 `underground_ores`。
+   - 树木/花草放 `vegetal_decoration`。
+4. **避免 feature order cycle**：
+   - 不要把同一个 placed feature 通过多个 modifier 对同一群系重复注入。
+   - 发现 `Feature order cycle found` 时，先查重注入，再查阶段是否错放。
+5. **最小验证流程**：
+   - `Single Biome` 选择 `foworld:skylight_forest` 启动；
+   - 观察地表是否有树、草、花；
+   - 下探确认 `deep_glow_stone` 是否生成；
+   - 控制台无 `Feature order cycle found`。
