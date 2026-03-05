@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:overworld",
+  "type": "foworld:skylight_type",
   "generator": {
     "type": "minecraft:noise",
     "settings": "minecraft:overworld",
