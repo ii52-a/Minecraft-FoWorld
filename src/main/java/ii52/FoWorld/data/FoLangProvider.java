@@ -1,13 +1,14 @@
-package com.user;
+package ii52.FoWorld.data;
 
+import ii52.FoWorld.registry.RuneRegistry;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 import java.util.Map;
 
-public class LangProvider extends LanguageProvider {
+public class FoLangProvider extends LanguageProvider {
     private final String locale;
 
-    public LangProvider(PackOutput output, String locale) {
+    public FoLangProvider(PackOutput output, String locale) {
         super(output, "foworld", locale);
         this.locale = locale;
     }
@@ -22,7 +23,6 @@ public class LangProvider extends LanguageProvider {
     }
 
     private void addChinese() {
-        // --- 1. 手动录入的旧翻译 ---
         add("item.foworld.super_diamond_sword", "复合钻石剑");
         add("item.foworld.super_diamond_pickaxe", "复合钻石镐");
         add("item.foworld.glow_diamond_pickaxe", "辉光钻石镐");
@@ -32,6 +32,8 @@ public class LangProvider extends LanguageProvider {
         add("item.foworld.iron_heavy_hammer", "铁制重锤");
         add("item.foworld.iron_dust", "铁粉尘");
         add("item.foworld.luminescent_dust", "荧光粉尘");
+        add("item.foworld.glowing_steak", "闪光牛排");
+        add("item.foworld.glowing_raw_beef", "调制闪光生牛肉");
 
         add("block.foworld.fo_bench", "世界工作台");
         add("block.foworld.lower_lever_crusher", "石制粉碎机");
@@ -46,9 +48,18 @@ public class LangProvider extends LanguageProvider {
         add("block.foworld.glow_altar", "辉光祭坛");
         add("block.foworld.light_veined_stone", "熠光石台");
 
-        add("creativetab.foworld_tab", "FoWorld 未来之征");
+        add("block.foworld.skylight_log", "天光木");
+        add("block.foworld.skylight_wood", "天光木块");
+        add("block.foworld.skylight_sapling", "天光树苗");
+        add("block.foworld.glow_log", "荧光木");
+        add("block.foworld.glow_wood", "荧光木块");
 
-        // --- 2. 批量翻译符石 ---
+        add("effect.foworld.glow_poison", "闪光中毒");
+
+        add("biome.foworld.skylight_forest", "天光森林");
+
+        add("itemGroup.foworld.main_tab", "FoWorld 未来之征");
+
         Map<String, String> runes = Map.of(
                 "azure_rune_stone", "天蔚符石",
                 "morning_glow_rune_stone", "霞光符石",
@@ -62,7 +73,6 @@ public class LangProvider extends LanguageProvider {
     }
 
     private void addEnglish() {
-        // --- 1. 手动录入的英文名 ---
         add("item.foworld.super_diamond_sword", "Composite Diamond Sword");
         add("item.foworld.super_diamond_pickaxe", "Composite Diamond Pickaxe");
         add("item.foworld.glow_diamond_pickaxe", "Glow Diamond Pickaxe");
@@ -72,6 +82,8 @@ public class LangProvider extends LanguageProvider {
         add("item.foworld.stone_heavy_hammer", "Stone Heavy Hammer");
         add("item.foworld.iron_heavy_hammer", "Iron Heavy Hammer");
         add("item.foworld.withered_glimmer_blade", "Withered Glimmer Blade");
+        add("item.foworld.glowing_steak", "Glowing Steak");
+        add("item.foworld.glowing_raw_beef", "Glowing Raw Beef");
 
         add("block.foworld.fo_bench", "FoWorld Crafting Table");
         add("block.foworld.lower_lever_crusher", "Stone Crusher");
@@ -86,10 +98,19 @@ public class LangProvider extends LanguageProvider {
         add("block.foworld.light_veined_stone", "Light Veined Stone");
         add("block.foworld.glow_altar", "Glow Altar");
 
+        add("block.foworld.skylight_log", "Skylight Log");
+        add("block.foworld.skylight_wood", "Skylight Wood");
+        add("block.foworld.skylight_sapling", "Skylight Sapling");
+        add("block.foworld.glow_log", "Glow Log");
+        add("block.foworld.glow_wood", "Glow Wood");
+
+        add("effect.foworld.glow_poison", "Glow Poison");
+
+        add("biome.foworld.skylight_forest", "Skylight Forest");
+
         add("creativetab.foworld_tab", "FoWorld: Future Journey");
 
-        // --- 2. 批量翻译符石 (英文逻辑) ---
-        for (String path : Items.RUNES) {
+        for (String path : RuneRegistry.RUNE_PATHS) {
             String id = path.substring(path.lastIndexOf("/") + 1);
             add("item.foworld." + id, id.replace("_", " ").toUpperCase());
         }

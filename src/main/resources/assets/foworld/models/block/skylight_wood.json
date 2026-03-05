@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "foworld:block/skylight_log",
+    "side": "foworld:block/skylight_log"
+  }
+}

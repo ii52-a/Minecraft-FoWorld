@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "foworld:block/skylight_sapling"
+  },
+  "render_type": "minecraft:cutout"
+}

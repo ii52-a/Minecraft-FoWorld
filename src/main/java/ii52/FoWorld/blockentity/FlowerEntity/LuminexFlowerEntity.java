@@ -1,6 +1,7 @@
 package ii52.FoWorld.blockentity.FlowerEntity;
 
 import ii52.FoWorld.ModTags;
+import ii52.FoWorld.block.skylight.SkylightRegistry;
 import ii52.FoWorld.registry.BlockRegistry.BlockRegistry;
 import ii52.FoWorld.registry.FlowerRegistry.FlowerEntityRegistry;
 import net.minecraft.core.BlockPos;
@@ -140,7 +141,8 @@ public class LuminexFlowerEntity extends BlockEntity {
                     stone_to_luminex_stone(level, targetPos, be, pos, state);
                 } else if (level.getBlockState(targetPos).is(BlockRegistry.DEEP_GLOW_STONE.get())) {
                     deep_glow_to_glow(level, targetPos, be, pos, state);
-
+                } else if (level.getBlockState(targetPos).is(ModTags.Blocks.LUMINEX_FLOWER_LOG)) {
+                    log_to_glow_log(level, targetPos, be, pos, state);
                 } else {
                     // 如果周围没有石头了，花朵就休息，进度清零
                     be.progress = 0;
@@ -177,7 +179,9 @@ public class LuminexFlowerEntity extends BlockEntity {
     }
 
     private static boolean handle_if_transform(Level level, BlockPos pos) {
-        return level.getBlockState(pos).is(BlockRegistry.DEEP_GLOW_STONE.get()) || level.getBlockState(pos).is(ModTags.Blocks.LUMINEX_FLOWER_STONE);
+        return level.getBlockState(pos).is(BlockRegistry.DEEP_GLOW_STONE.get()) 
+                || level.getBlockState(pos).is(ModTags.Blocks.LUMINEX_FLOWER_STONE)
+                || level.getBlockState(pos).is(ModTags.Blocks.LUMINEX_FLOWER_LOG);
     }
 
     private static void stone_to_luminex_stone(Level level, BlockPos targetPos, LuminexFlowerEntity be, BlockPos pos, BlockState state) {
@@ -239,6 +243,22 @@ public class LuminexFlowerEntity extends BlockEntity {
                 be.setChanged(); // 标记存盘
 
                 // 3. 全服通报：更新该区域，让所有玩家看到石头变了
+                level.sendBlockUpdated(pos, state, state, 3);
+            }
+        }
+    }
+
+    private static void log_to_glow_log(Level level, BlockPos targetPos, LuminexFlowerEntity be, BlockPos pos, BlockState state) {
+        be.progress++;
+        if (!level.isClientSide) {
+            if (be.progress >= NEEDED_PROGRESS) {
+                level.levelEvent(2001, targetPos, net.minecraft.world.level.block.Block.getId(Blocks.OAK_LOG.defaultBlockState()));
+                level.setBlockAndUpdate(targetPos, SkylightRegistry.GLOW_LOG.get().defaultBlockState());
+
+                be.glow -= 5;
+                be.progress = 0;
+                be.setChanged();
+
                 level.sendBlockUpdated(pos, state, state, 3);
             }
         }

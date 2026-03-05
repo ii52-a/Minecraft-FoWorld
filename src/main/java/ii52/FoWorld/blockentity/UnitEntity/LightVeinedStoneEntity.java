@@ -20,6 +20,7 @@ public class LightVeinedStoneEntity extends BlockEntity{
     private ItemStack storedItem = ItemStack.EMPTY;
     private UUID displayItemUUID = null;
     private ItemEntity displayItemEntity = null;
+    private boolean hasSpawnedDisplayItem = false;
 
     public LightVeinedStoneEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.LIGHT_VEINED_STONE.get(), pos, state);
@@ -35,6 +36,7 @@ public class LightVeinedStoneEntity extends BlockEntity{
 
     public void setStoredItem(ItemStack stack) {
         this.storedItem = stack.copy();
+        this.hasSpawnedDisplayItem = false;
         this.setChanged();
         if (level != null && !level.isClientSide) {
             spawnDisplayItem();
@@ -43,6 +45,19 @@ public class LightVeinedStoneEntity extends BlockEntity{
 
     private void spawnDisplayItem() {
         if (level == null || level.isClientSide || storedItem.isEmpty()) return;
+        
+        if (hasSpawnedDisplayItem) {
+            if (displayItemEntity != null && displayItemEntity.isAlive()) {
+                return;
+            }
+            if (displayItemUUID != null) {
+                Entity entity = ((net.minecraft.server.level.ServerLevel) level).getEntity(displayItemUUID);
+                if (entity instanceof ItemEntity itemEntity && itemEntity.isAlive()) {
+                    displayItemEntity = itemEntity;
+                    return;
+                }
+            }
+        }
         
         removeDisplayItem();
         
@@ -59,6 +74,7 @@ public class LightVeinedStoneEntity extends BlockEntity{
         displayItemUUID = displayItemEntity.getUUID();
         
         level.addFreshEntity(displayItemEntity);
+        hasSpawnedDisplayItem = true;
         this.setChanged();
     }
 
@@ -90,17 +106,25 @@ public class LightVeinedStoneEntity extends BlockEntity{
             level.addFreshEntity(itemEntity);
             
             storedItem = ItemStack.EMPTY;
+            hasSpawnedDisplayItem = false;
             this.setChanged();
         }
     }
 
     public void tick(Level level) {
         if (!level.isClientSide && hasItem()) {
-            if (displayItemEntity == null || !displayItemEntity.isAlive()) {
+            BlockPos abovePos = worldPosition.above();
+            if (!level.getBlockState(abovePos).isAir()) {
+                dropItem(level);
+                return;
+            }
+            
+            if (!hasSpawnedDisplayItem || displayItemEntity == null || !displayItemEntity.isAlive()) {
                 if (displayItemUUID != null) {
                     Entity entity = ((net.minecraft.server.level.ServerLevel) level).getEntity(displayItemUUID);
                     if (entity instanceof ItemEntity itemEntity && itemEntity.isAlive()) {
                         displayItemEntity = itemEntity;
+                        hasSpawnedDisplayItem = true;
                     } else {
                         displayItemUUID = null;
                         spawnDisplayItem();
@@ -141,6 +165,7 @@ public class LightVeinedStoneEntity extends BlockEntity{
         if (displayItemUUID != null) {
             nbt.putUUID("DisplayItemUUID", displayItemUUID);
         }
+        nbt.putBoolean("HasSpawnedDisplayItem", hasSpawnedDisplayItem);
     }
 
     @Override
@@ -155,6 +180,7 @@ public class LightVeinedStoneEntity extends BlockEntity{
         if (nbt.contains("DisplayItemUUID")) {
             displayItemUUID = nbt.getUUID("DisplayItemUUID");
         }
+        hasSpawnedDisplayItem = nbt.getBoolean("HasSpawnedDisplayItem");
     }
 
     public void setCorePos(BlockPos pos) {
@@ -169,13 +195,13 @@ public class LightVeinedStoneEntity extends BlockEntity{
         return nbt;
     }
 
-    public void notifyCore(Level level, BlockPos WorldPos) {
+    public void notifyCore(Level level, BlockPos worldPos) {
         if (this.corePos == null || level == null) return;
         if (!level.isLoaded(this.corePos)) return;
         if (corePos != null) {
             BlockEntity be = level.getBlockEntity(corePos);
             if (be instanceof GlowAltarEntity core) {
-                core.onPartRemoved(WorldPos);
+                core.onPartRemoved(worldPos);
             }
         }
     }

@@ -1,5 +1,4 @@
 {
-  "itemGroup.foworld.main_tab": "FoWorld",
   "block.foworld.chiseled_glow_vein_quartz": "Chiseled Glow Vein Quartz",
   "block.foworld.deep_glow_stone": "Deep Glow Stone",
   "block.foworld.deep_orchid": "Deep Orchid",
@@ -8,13 +7,21 @@
   "block.foworld.fluorite_ore_1": "Fluorite Ore Mid 1",
   "block.foworld.fo_bench": "FoWorld Crafting Table",
   "block.foworld.glow_altar": "Glow Altar",
+  "block.foworld.glow_log": "Glow Log",
   "block.foworld.glow_tombstone": "Glow Tombstone",
+  "block.foworld.glow_wood": "Glow Wood",
   "block.foworld.light_veined_stone": "Light Veined Stone",
   "block.foworld.lower_lever_crusher": "Stone Crusher",
   "block.foworld.luminex_flower": "Luminex Flower",
+  "block.foworld.skylight_log": "Skylight Log",
+  "block.foworld.skylight_sapling": "Skylight Sapling",
+  "block.foworld.skylight_wood": "Skylight Wood",
   "creativetab.foworld_tab": "FoWorld: Future Journey",
+  "effect.foworld.glow_poison": "Glow Poison",
   "item.foworld.azure_rune_stone": "AZURE RUNE STONE",
   "item.foworld.glow_diamond_pickaxe": "Glow Diamond Pickaxe",
+  "item.foworld.glowing_raw_beef": "Glowing Raw Beef",
+  "item.foworld.glowing_steak": "Glowing Steak",
   "item.foworld.iron_dust": "Iron Dust",
   "item.foworld.iron_heavy_hammer": "Iron Heavy Hammer",
   "item.foworld.luminescent_dust": "Luminescent Dust",
@@ -28,8 +35,5 @@
   "item.foworld.verdant_rune": "VERDANT RUNE",
   "item.foworld.whitespace_stone": "WHITESPACE STONE",
   "item.foworld.withered_glimmer_blade": "Withered Glimmer Blade",
-  "item.foworld.wooden_heavy_hammer": "Wooden Heavy Hammer",
-
-  "item.foworld.glow_tnt": "glow_tnt"
-
+  "item.foworld.wooden_heavy_hammer": "Wooden Heavy Hammer"
 }

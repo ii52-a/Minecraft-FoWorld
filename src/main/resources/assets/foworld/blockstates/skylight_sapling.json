@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "stage=0": {
+      "model": "foworld:block/skylight_sapling"
+    },
+    "stage=1": {
+      "model": "foworld:block/skylight_sapling"
+    }
+  }
+}

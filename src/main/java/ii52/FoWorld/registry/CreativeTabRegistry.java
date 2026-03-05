@@ -1,7 +1,7 @@
 package ii52.FoWorld.registry;
 
-import com.user.Items;
 import ii52.FoWorld.FoWorld;
+import ii52.FoWorld.block.skylight.SkylightRegistry;
 import ii52.FoWorld.registry.BlockRegistry.BlockRegistry;
 import ii52.FoWorld.registry.FlowerRegistry.FlowerRegistry;
 import net.minecraft.core.registries.Registries;
@@ -60,10 +60,17 @@ public class CreativeTabRegistry {
                                 output.accept(BlockRegistry.LIGHT_VEINED_STONE.get());
                                 output.accept(BlockRegistry.CHISELED_GLOW_VEIN_QUARTZ.get());
 
+                                //天光树系列
+                                output.accept(SkylightRegistry.SKYLIGHT_LOG.get());
+                                output.accept(SkylightRegistry.SKYLIGHT_WOOD.get());
+                                output.accept(SkylightRegistry.GLOW_LOG.get());
+                                output.accept(SkylightRegistry.GLOW_WOOD.get());
+                                output.accept(SkylightRegistry.SKYLIGHT_SAPLING.get());
+
                                 //test
                                 output.accept(BlockRegistry.GLOW_TOMBSTONE.get());
 
-                                Items.RUNE_MAP.values().forEach(rune -> output.accept(rune.get()));
+                                RuneRegistry.RUNE_MAP.values().forEach(rune -> output.accept(rune.get()));
 
 
 

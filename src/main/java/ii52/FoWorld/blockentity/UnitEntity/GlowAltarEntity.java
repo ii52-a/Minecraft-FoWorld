@@ -85,7 +85,7 @@ public class GlowAltarEntity extends BlockEntity {
                     BlockPos targetPos = this.worldPosition.offset(LinkListPos.get(index));
                     BlockEntity be = level.getBlockEntity(targetPos);
                     if (be instanceof LightVeinedStoneEntity stoneEntity) {
-                        if (!stoneEntity.hasItem()) {
+                        if (!stoneEntity.hasItem() && isPedestalAvailable(level, targetPos)) {
                             stoneEntity.setStoredItem(itemStack.split(1));
                             return true;
                         }
@@ -94,6 +94,11 @@ public class GlowAltarEntity extends BlockEntity {
             }
         }
         return false;
+    }
+
+    private boolean isPedestalAvailable(Level level, BlockPos pedestalPos) {
+        BlockPos abovePos = pedestalPos.above();
+        return level.getBlockState(abovePos).isAir();
     }
 
     public List<LightVeinedStoneEntity> getPedestalsWithItems(Level level) {
@@ -178,7 +183,7 @@ public class GlowAltarEntity extends BlockEntity {
                 BlockPos targetPos = this.worldPosition.offset(LinkListPos.get(index));
                 BlockEntity be = level.getBlockEntity(targetPos);
                 if (be instanceof LightVeinedStoneEntity stoneEntity) {
-                    if (!stoneEntity.hasItem()) {
+                    if (!stoneEntity.hasItem() && isPedestalAvailable(level, targetPos)) {
                         stoneEntity.setStoredItem(resultItem.copy());
                         break;
                     }

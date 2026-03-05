@@ -10,6 +10,7 @@ public class ModTags {
     public static class Blocks {
         public static final TagKey<Block> GLOW_CHECK =tag("glow_check");
         public static final TagKey<Block> LUMINEX_FLOWER_STONE =tag("luminex_flower_stone");
+        public static final TagKey<Block> LUMINEX_FLOWER_LOG =tag("luminex_flower_log");
         private static TagKey<Block> tag(String name) {
             return TagKey.create(Registries.BLOCK, new ResourceLocation("foworld", name));
         }

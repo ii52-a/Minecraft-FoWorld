@@ -1,6 +1,5 @@
 package ii52.FoWorld.block.Unit;
 
-import ii52.FoWorld.blockentity.UnitEntity.GlowAltarEntity;
 import ii52.FoWorld.blockentity.UnitEntity.LightVeinedStoneEntity;
 import ii52.FoWorld.registry.BlockRegistry.BlockEntityRegistry;
 import net.minecraft.core.BlockPos;
@@ -29,20 +28,20 @@ public class LightVeinedStone extends BaseEntityBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (!level.isClientSide) {
-            BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof LightVeinedStoneEntity stoneEntity) {
-                if (stoneEntity.hasItem()) {
+        BlockEntity be = level.getBlockEntity(pos);
+        if (be instanceof LightVeinedStoneEntity stoneEntity) {
+            if (stoneEntity.hasItem()) {
+                if (!level.isClientSide) {
                     stoneEntity.dropItem(level);
-                    return InteractionResult.SUCCESS;
                 }
+                return InteractionResult.sidedSuccess(level.isClientSide);
             }
         }
         return InteractionResult.PASS;
     }
 
     @Override
-    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, net.minecraft.world.entity.player.Player player) {
+    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
         if (!level.isClientSide()) {
             BlockEntity be = level.getBlockEntity(pos);
             if (be instanceof LightVeinedStoneEntity lightVeinedStoneEntity){

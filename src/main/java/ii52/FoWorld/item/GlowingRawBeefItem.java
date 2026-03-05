@@ -18,7 +18,7 @@ public class GlowingRawBeefItem extends Item {
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (!level.isClientSide) {
             entity.addEffect(new MobEffectInstance(EffectRegistry.GLOW_POISON.get(), 300, 1));
-            entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 300, 0));
+            entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 200, 0));
         }
         return super.finishUsingItem(stack, level, entity);
     }

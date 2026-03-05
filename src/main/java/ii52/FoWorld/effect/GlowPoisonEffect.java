@@ -6,8 +6,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.Level;
+import net.minecraft.core.BlockPos;
 
 import java.util.UUID;
 
@@ -25,28 +25,15 @@ public class GlowPoisonEffect extends MobEffect {
         if (!level.isClientSide) {
             updateSpeedModifier(entity, amplifier);
             
-            Vec3 lastPos = entity.getPersistentData().contains("LastGlowPos") 
-                ? new Vec3(
-                    entity.getPersistentData().getDouble("LastGlowPosX"),
-                    entity.getPersistentData().getDouble("LastGlowPosY"),
-                    entity.getPersistentData().getDouble("LastGlowPosZ")
-                ) 
-                : null;
+            entity.setGlowingTag(true);
             
-            Vec3 currentPos = entity.position();
+            int lightLevel = level.getMaxLocalRawBrightness(entity.blockPosition());
+            int threshold = getLightThreshold(amplifier);
             
-            if (lastPos != null && lastPos.distanceToSqr(currentPos) > 0.5) {
-                float chance = getChance(amplifier);
+            if (lightLevel > threshold) {
                 float damageAmount = getDamageAmount(amplifier);
-                
-                if (entity.getRandom().nextFloat() < chance) {
-                    entity.hurt(level.damageSources().magic(), damageAmount);
-                }
+                entity.hurt(level.damageSources().magic(), damageAmount);
             }
-            
-            entity.getPersistentData().putDouble("LastGlowPosX", currentPos.x);
-            entity.getPersistentData().putDouble("LastGlowPosY", currentPos.y);
-            entity.getPersistentData().putDouble("LastGlowPosZ", currentPos.z);
         }
     }
 
@@ -59,11 +46,23 @@ public class GlowPoisonEffect extends MobEffect {
         double slowAmount = getSlowAmount(amplifier);
         AttributeModifier modifier = new AttributeModifier(
             SPEED_MODIFIER_UUID,
-            "Glow Poison Slow",
+            "glow_poison_slow",
             -slowAmount,
             AttributeModifier.Operation.MULTIPLY_TOTAL
         );
         speedAttribute.addPermanentModifier(modifier);
+    }
+
+    @Override
+    public void removeAttributeModifiers(LivingEntity entity, net.minecraft.world.entity.ai.attributes.AttributeMap attributeMap, int amplifier) {
+        super.removeAttributeModifiers(entity, attributeMap, amplifier);
+        
+        AttributeInstance speedAttribute = entity.getAttribute(Attributes.MOVEMENT_SPEED);
+        if (speedAttribute != null) {
+            speedAttribute.removeModifier(SPEED_MODIFIER_UUID);
+        }
+        
+        entity.setGlowingTag(false);
     }
 
     private double getSlowAmount(int amplifier) {
@@ -74,20 +73,21 @@ public class GlowPoisonEffect extends MobEffect {
         };
     }
 
-    private float getChance(int amplifier) {
+    private int getLightThreshold(int amplifier) {
         return switch (amplifier) {
-            case 0 -> 0.10F;
-            case 1 -> 0.20F;
-            default -> 0.20F;
+            case 0 -> 7;
+            case 1 -> 8;
+            default -> 9;
         };
     }
 
     private float getDamageAmount(int amplifier) {
-        return amplifier >= 2 ? 1.0F : 0.5F;
+        return amplifier >= 1 ? 1.0F : 0.5F;
     }
 
     @Override
     public boolean isDurationEffectTick(int duration, int amplifier) {
-        return true;
+        int interval = 40;
+        return duration % interval == 0;
     }
 }
