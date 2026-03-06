@@ -55,7 +55,4 @@ First Stage:基于主世界的原版增强
 
 
 ---
-## 🌍 天光群系定位问题排查（1.20.1）
-- 现象 1：在主世界使用 `/locate biome foworld:skylight_forest` 时提示“无法在合理的距离找到群系”。
-- 根因 1：当前工程没有把 `foworld:skylight_forest` 注入主世界噪声群系分布；`forge:add_features` 只能给“已存在群系”加地物，不会新增群系。
-- 现象 2：将世界设为单一天光群系时崩溃，报错 `Feature order cycle found`。
+

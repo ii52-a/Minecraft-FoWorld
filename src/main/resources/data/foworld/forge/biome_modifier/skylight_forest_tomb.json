@@ -1,0 +1,8 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#foworld:is_skylight_forest",
+  "features": [
+    "foworld:skylight_tomb_placed"
+  ],
+  "step": "surface_structures"
+}

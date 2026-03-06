@@ -1,0 +1,8 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#foworld:is_skylight_forest",
+  "features": [
+    "foworld:deep_glow_stone_placed"
+  ],
+  "step": "underground_ores"
+}

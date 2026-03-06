@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:disk",
+  "config": {
+    "state": {
+      "Name": "foworld:deep_glow_stone"
+    },
+    "radius": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 1,
+        "max_inclusive": 3
+      }
+    },
+    "half_height": 1,
+    "targets": [
+      "minecraft:dirt",
+      "minecraft:grass_block"
+    ]
+  }
+}
