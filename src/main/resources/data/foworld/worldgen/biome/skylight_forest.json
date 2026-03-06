@@ -1,76 +1,85 @@
 {
+  "has_precipitation": true,
   "temperature": 0.7,
   "downfall": 0.8,
-  "has_precipitation": true,
   "effects": {
-    "sky_color": 12638463,
     "fog_color": 12638463,
+    "sky_color": 12638463,
     "water_color": 4159204,
-    "water_fog_color": 329011
+    "water_fog_color": 329011,
+    "grass_color": 7972607,
+    "foliage_color": 9026431
   },
   "spawners": {
-    "ambient": [
-      {
-        "type": "minecraft:bat",
-        "weight": 10,
-        "minCount": 8,
-        "maxCount": 8
-      }
+    "monster": [
+      { "type": "minecraft:spider", "weight": 100, "minCount": 4, "maxCount": 4 },
+      { "type": "minecraft:zombie", "weight": 95, "minCount": 4, "maxCount": 4 },
+      { "type": "minecraft:skeleton", "weight": 100, "minCount": 4, "maxCount": 4 },
+      { "type": "minecraft:creeper", "weight": 100, "minCount": 4, "maxCount": 4 }
     ],
     "creature": [
-      {
-        "type": "minecraft:sheep",
-        "weight": 12,
-        "minCount": 4,
-        "maxCount": 4
-      },
-      {
-        "type": "minecraft:pig",
-        "weight": 10,
-        "minCount": 4,
-        "maxCount": 4
-      },
-      {
-        "type": "minecraft:chicken",
-        "weight": 10,
-        "minCount": 4,
-        "maxCount": 4
-      },
-      {
-        "type": "minecraft:cow",
-        "weight": 8,
-        "minCount": 4,
-        "maxCount": 4
-      }
+      { "type": "minecraft:sheep", "weight": 12, "minCount": 4, "maxCount": 4 },
+      { "type": "minecraft:pig", "weight": 10, "minCount": 4, "maxCount": 4 },
+      { "type": "minecraft:chicken", "weight": 10, "minCount": 4, "maxCount": 4 },
+      { "type": "minecraft:cow", "weight": 8, "minCount": 4, "maxCount": 4 }
     ],
-    "monster": [
-      {
-        "type": "minecraft:spider",
-        "weight": 100,
-        "minCount": 4,
-        "maxCount": 4
-      },
-      {
-        "type": "minecraft:zombie",
-        "weight": 95,
-        "minCount": 4,
-        "maxCount": 4
-      },
-      {
-        "type": "minecraft:skeleton",
-        "weight": 100,
-        "minCount": 4,
-        "maxCount": 4
-      },
-      {
-        "type": "minecraft:creeper",
-        "weight": 100,
-        "minCount": 4,
-        "maxCount": 4
-      }
-    ]
+    "ambient": [
+      { "type": "minecraft:bat", "weight": 10, "minCount": 8, "maxCount": 8 }
+    ],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": [],
+    "underground_water_creature": [],
+    "axolotls": []
   },
   "spawn_costs": {},
-  "carvers": {},
-  "features": []
+  "carvers": {
+    "air": [
+      "minecraft:cave",
+      "minecraft:cave_extra_underground",
+      "minecraft:canyon"
+    ]
+  },
+  "features": [
+    [],
+    ["minecraft:lake_lava_underground", "minecraft:lake_lava_surface"],
+    ["minecraft:amethyst_geode", "minecraft:dungeon", "minecraft:dungeon"],
+    [
+      "minecraft:ore_dirt",
+      "minecraft:ore_gravel",
+      "minecraft:ore_granite_upper",
+      "minecraft:ore_granite_lower",
+      "minecraft:ore_diorite_upper",
+      "minecraft:ore_diorite_lower",
+      "minecraft:ore_andesite_upper",
+      "minecraft:ore_andesite_lower",
+      "minecraft:ore_tuff",
+      "minecraft:ore_coal_upper",
+      "minecraft:ore_coal_lower",
+      "minecraft:ore_iron_upper",
+      "minecraft:ore_iron_middle",
+      "minecraft:ore_iron_small",
+      "minecraft:ore_gold",
+      "minecraft:ore_gold_lower",
+      "minecraft:ore_redstone",
+      "minecraft:ore_redstone_lower",
+      "minecraft:ore_diamond",
+      "minecraft:ore_diamond_medium",
+      "minecraft:ore_diamond_large",
+      "minecraft:ore_diamond_buried",
+      "minecraft:ore_lapis",
+      "minecraft:ore_lapis_buried",
+      "minecraft:ore_copper_large",
+      "minecraft:ore_copper",
+      "minecraft:ore_emerald",
+      "minecraft:ore_infested"
+    ],
+    ["minecraft:disk_sand", "minecraft:disk_clay", "minecraft:disk_gravel"],
+    [],
+    [],
+    ["minecraft:freeze_top_layer"],
+    ["minecraft:forest_flowers", "minecraft:patch_grass_forest", "minecraft:trees_birch_and_oak"],
+    ["minecraft:brown_mushroom_normal", "minecraft:red_mushroom_normal"],
+    ["minecraft:spring_water", "minecraft:spring_lava"]
+  ]
 }
