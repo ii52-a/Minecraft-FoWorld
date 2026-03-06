@@ -83,3 +83,32 @@ First Stage:基于主世界的原版增强
    - 观察地表是否有树、草、花；
    - 下探确认 `deep_glow_stone` 是否生成；
    - 控制台无 `Feature order cycle found`。
+
+## 🌲 天光木群系（Skylight Forest）创建方法（协作标准）
+目标：构建“**大型天光树为主 + 小概率辉光坟墓 + 草方块/暗光荧石地表点缀 + 伶幽兰与其他花**”的稳定群系。
+
+### 1) 特征拆分（避免循环依赖）
+- `vegetal_decoration`：树木与花草（`skylight_tree_placed`、`skylight_surface_orchid_placed`、vanilla 花草树）。
+- `local_modifications`：地表暗光荧石斑块（`skylight_surface_glowstone_patch_placed`）。
+- `surface_structures`：小概率辉光坟墓（`skylight_tomb_placed`）。
+- `underground_ores`：地下暗光荧石矿脉（`deep_glow_stone_placed`）。
+
+### 2) 大型天光树实现要点
+- 自定义 `skylight_tree` 特征提高树高并扩大树冠。
+- 树干改用 `skylight_log` / `glow_log` 混合，强化群系识别度。
+
+### 3) 坟墓生成规范
+- 自定义 `glow_tomb` 特征在地表生成：
+  - 3x3 鉴刻光纹石英基座；
+  - 四角暗光荧石点缀；
+  - 中央辉光墓碑；
+  - 小概率顶部灵魂灯。
+- 通过 `rarity_filter` 控制“低概率出现”。
+
+### 4) 最小回归检查
+- 单一天光群系开图后：
+  - 能看到明显大型天光树群；
+  - 可见普通花草与伶幽兰；
+  - 地表出现少量暗光荧石斑块；
+  - 地表偶发辉光坟墓；
+  - 控制台无 `Feature order cycle found`。

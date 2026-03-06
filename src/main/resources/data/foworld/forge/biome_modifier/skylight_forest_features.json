@@ -6,7 +6,7 @@
     "minecraft:flower_default",
     "minecraft:patch_grass_plain",
     "foworld:skylight_tree_placed",
-    "foworld:deep_orchid_placed"
+    "foworld:skylight_surface_orchid_placed"
   ],
   "step": "vegetal_decoration"
 }

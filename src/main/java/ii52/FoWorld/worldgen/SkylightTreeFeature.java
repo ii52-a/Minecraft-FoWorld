@@ -1,10 +1,9 @@
 package ii52.FoWorld.worldgen;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
+import ii52.FoWorld.block.skylight.SkylightRegistry;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -40,18 +39,19 @@ public class SkylightTreeFeature extends Feature<NoneFeatureConfiguration> {
     }
     
     private void growSkylightTree(LevelAccessor level, BlockPos pos, RandomSource random) {
-        int height = random.nextInt(5) + 10;
+        int height = random.nextInt(9) + 16;
         
         for (int y = 0; y < height; y++) {
             BlockState logState = getLogState(y, height, random);
             level.setBlock(pos.above(y), logState, 3);
         }
         
-        int leafStart = height - 3;
-        for (int x = -2; x <= 2; x++) {
-            for (int z = -2; z <= 2; z++) {
-                for (int y = leafStart; y <= height; y++) {
-                    if (Math.abs(x) < 2 || Math.abs(z) < 2) {
+        int leafStart = height - 6;
+        for (int x = -3; x <= 3; x++) {
+            for (int z = -3; z <= 3; z++) {
+                for (int y = leafStart; y <= height + 1; y++) {
+                    int canopyRadius = Math.max(1, 3 - (y - leafStart) / 2);
+                    if (Math.abs(x) <= canopyRadius && Math.abs(z) <= canopyRadius) {
                         BlockPos leafPos = pos.above(y).offset(x, 0, z);
                         if (level.getBlockState(leafPos).isAir()) {
                             level.setBlock(leafPos, Blocks.OAK_LEAVES.defaultBlockState(), 3);
@@ -63,18 +63,16 @@ public class SkylightTreeFeature extends Feature<NoneFeatureConfiguration> {
     }
     
     private BlockState getLogState(int y, int totalHeight, RandomSource random) {
-        if (y < 1 || y >= totalHeight - 1) {
-            return Blocks.OAK_LOG.defaultBlockState();
+        if (y < 2 || y >= totalHeight - 2) {
+            return SkylightRegistry.SKYLIGHT_LOG.get().defaultBlockState();
         }
-        
+
         float roll = random.nextFloat();
-        
-        if (roll < 0.40f) {
-            return Blocks.OAK_LOG.defaultBlockState();
-        } else if (roll < 0.60f) {
-            return Blocks.ACACIA_LOG.defaultBlockState();
+
+        if (roll < 0.75f) {
+            return SkylightRegistry.SKYLIGHT_LOG.get().defaultBlockState();
         }
-        
-        return Blocks.DARK_OAK_LOG.defaultBlockState();
+
+        return SkylightRegistry.GLOW_LOG.get().defaultBlockState();
     }
 }
